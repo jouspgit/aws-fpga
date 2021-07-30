@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# xsim v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Sun Apr 25 04:05:41 2021
+# Process ID: 6070
+# Current directory: /home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/verif/sim/vivado/test_dram_dma_hwsw_cosim_c
+# Command line: xsim -log test_dram_dma_hwsw_cosim.log -mode tcl -source {xsim.dir/tb/xsim_script.tcl}
+# Log file: /home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/verif/sim/vivado/test_dram_dma_hwsw_cosim_c/test_dram_dma_hwsw_cosim.log
+# Journal file: /home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/verif/sim/vivado/test_dram_dma_hwsw_cosim_c/xsim.jou
+#-----------------------------------------------------------
+source xsim.dir/tb/xsim_script.tcl
+open_wave_config /home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/verif/sim/vivado/test_dram_dma_hwsw_cosim_c/tb.wcfg
+source /home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/verif/scripts/waves.tcl

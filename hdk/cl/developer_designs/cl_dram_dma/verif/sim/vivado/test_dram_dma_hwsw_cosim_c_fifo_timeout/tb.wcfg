@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb.wdb" id="1">
+         <top_modules>
+            <top_module name="arch_package" />
+            <top_module name="axi_fifo_mm_s_pkg" />
+            <top_module name="glbl" />
+            <top_module name="ipif_pkg" />
+            <top_module name="lib_pkg" />
+            <top_module name="proj_package" />
+            <top_module name="tb" />
+            <top_module name="tb_type_defines_pkg" />
+            <top_module name="test_null" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="39368492fs"></ZoomStartTime>
+      <ZoomEndTime time="40969944fs"></ZoomEndTime>
+      <Cursor1Time time="39776000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="185"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="70" />
+   <wave_markers>
+      <marker label="" time="39556000" />
+   </wave_markers>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/awid">
+      <obj_property name="ElementShortName">awid[15:0]</obj_property>
+      <obj_property name="ObjectShortName">awid[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/awaddr">
+      <obj_property name="ElementShortName">awaddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">awaddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/awlen">
+      <obj_property name="ElementShortName">awlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">awlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/awsize">
+      <obj_property name="ElementShortName">awsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">awsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/awvalid">
+      <obj_property name="ElementShortName">awvalid</obj_property>
+      <obj_property name="ObjectShortName">awvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/awready">
+      <obj_property name="ElementShortName">awready</obj_property>
+      <obj_property name="ObjectShortName">awready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/wid">
+      <obj_property name="ElementShortName">wid[15:0]</obj_property>
+      <obj_property name="ObjectShortName">wid[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/wdata">
+      <obj_property name="ElementShortName">wdata[511:0]</obj_property>
+      <obj_property name="ObjectShortName">wdata[511:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/wstrb">
+      <obj_property name="ElementShortName">wstrb[63:0]</obj_property>
+      <obj_property name="ObjectShortName">wstrb[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/wlast">
+      <obj_property name="ElementShortName">wlast</obj_property>
+      <obj_property name="ObjectShortName">wlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/wvalid">
+      <obj_property name="ElementShortName">wvalid</obj_property>
+      <obj_property name="ObjectShortName">wvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/wready">
+      <obj_property name="ElementShortName">wready</obj_property>
+      <obj_property name="ObjectShortName">wready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/bid">
+      <obj_property name="ElementShortName">bid[15:0]</obj_property>
+      <obj_property name="ObjectShortName">bid[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/bresp">
+      <obj_property name="ElementShortName">bresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">bresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/bvalid">
+      <obj_property name="ElementShortName">bvalid</obj_property>
+      <obj_property name="ObjectShortName">bvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/bready">
+      <obj_property name="ElementShortName">bready</obj_property>
+      <obj_property name="ObjectShortName">bready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/arid">
+      <obj_property name="ElementShortName">arid[15:0]</obj_property>
+      <obj_property name="ObjectShortName">arid[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/araddr">
+      <obj_property name="ElementShortName">araddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">araddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/arlen">
+      <obj_property name="ElementShortName">arlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">arlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/arsize">
+      <obj_property name="ElementShortName">arsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">arsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/arvalid">
+      <obj_property name="ElementShortName">arvalid</obj_property>
+      <obj_property name="ObjectShortName">arvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/arready">
+      <obj_property name="ElementShortName">arready</obj_property>
+      <obj_property name="ObjectShortName">arready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/rid">
+      <obj_property name="ElementShortName">rid[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rid[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/rdata">
+      <obj_property name="ElementShortName">rdata[511:0]</obj_property>
+      <obj_property name="ObjectShortName">rdata[511:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/rresp">
+      <obj_property name="ElementShortName">rresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/rlast">
+      <obj_property name="ElementShortName">rlast</obj_property>
+      <obj_property name="ObjectShortName">rlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/rvalid">
+      <obj_property name="ElementShortName">rvalid</obj_property>
+      <obj_property name="ObjectShortName">rvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/sh_cl_dma_pcis_q/master/rready">
+      <obj_property name="ElementShortName">rready</obj_property>
+      <obj_property name="ObjectShortName">rready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/lcl_cl_sh_ddra/master/wdata">
+      <obj_property name="ElementShortName">wdata[511:0]</obj_property>
+      <obj_property name="ObjectShortName">wdata[511:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/lcl_cl_sh_ddrb/master/wdata">
+      <obj_property name="ElementShortName">wdata[511:0]</obj_property>
+      <obj_property name="ObjectShortName">wdata[511:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/aclk">
+      <obj_property name="ElementShortName">aclk</obj_property>
+      <obj_property name="ObjectShortName">aclk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_awid">
+      <obj_property name="ElementShortName">s_axi4_awid[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_awid[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_awaddr">
+      <obj_property name="ElementShortName">s_axi4_awaddr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_awaddr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_awlen">
+      <obj_property name="ElementShortName">s_axi4_awlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_awlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_awsize">
+      <obj_property name="ElementShortName">s_axi4_awsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_awsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_awburst">
+      <obj_property name="ElementShortName">s_axi4_awburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_awburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_awvalid">
+      <obj_property name="ElementShortName">s_axi4_awvalid</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_awvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_awready">
+      <obj_property name="ElementShortName">s_axi4_awready</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_awready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_wdata">
+      <obj_property name="ElementShortName">s_axi4_wdata[511:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_wdata[511:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_wstrb">
+      <obj_property name="ElementShortName">s_axi4_wstrb[63:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_wstrb[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_wlast">
+      <obj_property name="ElementShortName">s_axi4_wlast</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_wlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_wvalid">
+      <obj_property name="ElementShortName">s_axi4_wvalid</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_wvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_wready">
+      <obj_property name="ElementShortName">s_axi4_wready</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_wready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_bid">
+      <obj_property name="ElementShortName">s_axi4_bid[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_bid[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_bresp">
+      <obj_property name="ElementShortName">s_axi4_bresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_bresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_bvalid">
+      <obj_property name="ElementShortName">s_axi4_bvalid</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_bvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_bready">
+      <obj_property name="ElementShortName">s_axi4_bready</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_bready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_arid">
+      <obj_property name="ElementShortName">s_axi4_arid[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_arid[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_araddr">
+      <obj_property name="ElementShortName">s_axi4_araddr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_araddr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_arlen">
+      <obj_property name="ElementShortName">s_axi4_arlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_arlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_arsize">
+      <obj_property name="ElementShortName">s_axi4_arsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_arsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_arburst">
+      <obj_property name="ElementShortName">s_axi4_arburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_arburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_arvalid">
+      <obj_property name="ElementShortName">s_axi4_arvalid</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_arvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_arready">
+      <obj_property name="ElementShortName">s_axi4_arready</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_arready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_rid">
+      <obj_property name="ElementShortName">s_axi4_rid[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_rid[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_rdata">
+      <obj_property name="ElementShortName">s_axi4_rdata[511:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_rdata[511:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_rresp">
+      <obj_property name="ElementShortName">s_axi4_rresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_rresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_rlast">
+      <obj_property name="ElementShortName">s_axi4_rlast</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_rlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_rvalid">
+      <obj_property name="ElementShortName">s_axi4_rvalid</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_rvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s_axi4_rready">
+      <obj_property name="ElementShortName">s_axi4_rready</obj_property>
+      <obj_property name="ObjectShortName">s_axi4_rready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/mm2s_prmry_reset_out_n">
+      <obj_property name="ElementShortName">mm2s_prmry_reset_out_n</obj_property>
+      <obj_property name="ObjectShortName">mm2s_prmry_reset_out_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/axi_str_txd_tvalid">
+      <obj_property name="ElementShortName">axi_str_txd_tvalid</obj_property>
+      <obj_property name="ObjectShortName">axi_str_txd_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/axi_str_txd_tready">
+      <obj_property name="ElementShortName">axi_str_txd_tready</obj_property>
+      <obj_property name="ObjectShortName">axi_str_txd_tready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/axi_str_txd_tlast">
+      <obj_property name="ElementShortName">axi_str_txd_tlast</obj_property>
+      <obj_property name="ObjectShortName">axi_str_txd_tlast</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/axi_str_txd_tdata">
+      <obj_property name="ElementShortName">axi_str_txd_tdata[511:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_str_txd_tdata[511:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/s2mm_prmry_reset_out_n">
+      <obj_property name="ElementShortName">s2mm_prmry_reset_out_n</obj_property>
+      <obj_property name="ObjectShortName">s2mm_prmry_reset_out_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/axi_str_rxd_tvalid">
+      <obj_property name="ElementShortName">axi_str_rxd_tvalid</obj_property>
+      <obj_property name="ObjectShortName">axi_str_rxd_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/axi_str_rxd_tready">
+      <obj_property name="ElementShortName">axi_str_rxd_tready</obj_property>
+      <obj_property name="ObjectShortName">axi_str_rxd_tready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/axi_str_rxd_tlast">
+      <obj_property name="ElementShortName">axi_str_rxd_tlast</obj_property>
+      <obj_property name="ObjectShortName">axi_str_rxd_tlast</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_DMA_PCIS_SLV/FIFO_AXI4_TO_STREAM_AND_BACK/axi_str_rxd_tdata">
+      <obj_property name="ElementShortName">axi_str_rxd_tdata[511:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_str_rxd_tdata[511:0]</obj_property>
+   </wvobject>
+</wave_config>
