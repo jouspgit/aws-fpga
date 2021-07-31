@@ -1,0 +1,4 @@
+INFO: [XSIM 43-3496] Using init file passed via -initfile option "/opt/Xilinx/Vivado/2020.1/data/xsim/ip/xsim_ip.ini".
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/design/cl_ding_ding_bottle.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'counter_8bits'
+INFO: [VRFC 10-3107] analyzing entity 'algorithm'

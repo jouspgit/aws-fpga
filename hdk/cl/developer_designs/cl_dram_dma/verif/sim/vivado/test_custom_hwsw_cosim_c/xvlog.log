@@ -372,7 +372,7 @@ INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk
 INFO: [VRFC 10-311] analyzing module sync
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/sh_ddr/sim/flop_ccf.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module flop_ccf
-INFO: [VRFC 10-2458] undeclared symbol vld, assumed default net type wire [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/sh_ddr/sim/flop_ccf.sv:96]
+INFO: [VRFC 10-2458] undeclared symbol vld, assumed default net type wire [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/sh_ddr/sim/flop_ccf.sv:76]
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/sh_ddr/sim/sh_ddr.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module sh_ddr
 WARNING: [VRFC 10-2821] generate block is allowed only inside loop and conditional generate in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/sh_ddr/sim/sh_ddr.sv:797]

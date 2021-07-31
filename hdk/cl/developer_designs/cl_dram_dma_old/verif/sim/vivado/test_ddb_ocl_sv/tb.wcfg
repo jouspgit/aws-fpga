@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb.wdb" id="1">
+         <top_modules>
+            <top_module name="arch_package" />
+            <top_module name="glbl" />
+            <top_module name="proj_package" />
+            <top_module name="tb" />
+            <top_module name="tb_type_defines_pkg" />
+            <top_module name="test_ddb_ocl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="12310001fs"></ZoomEndTime>
+      <Cursor1Time time="200000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="192"></NameColumnWidth>
+      <ValueColumnWidth column_width="111"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="44" />
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/sh_ocl_bus_q/rdata">
+      <obj_property name="ElementShortName">rdata[511:0]</obj_property>
+      <obj_property name="ObjectShortName">rdata[511:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_rdata">
+      <obj_property name="ElementShortName">slv_rdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_rdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/custom_data/ddb_value">
+      <obj_property name="ElementShortName">ddb_value[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ddb_value[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/algo_enable">
+      <obj_property name="ElementShortName">algo_enable</obj_property>
+      <obj_property name="ObjectShortName">algo_enable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/pcim_tst_cfg_bus/rd">
+      <obj_property name="ElementShortName">rd</obj_property>
+      <obj_property name="ObjectShortName">rd</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/sh_ocl_bus_q/rvalid">
+      <obj_property name="ElementShortName">rvalid</obj_property>
+      <obj_property name="ObjectShortName">rvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/sh_ocl_bus_q/rready">
+      <obj_property name="ElementShortName">rready</obj_property>
+      <obj_property name="ObjectShortName">rready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/sh_ocl_bus_q/arvalid">
+      <obj_property name="ElementShortName">arvalid</obj_property>
+      <obj_property name="ObjectShortName">arvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/sh_ocl_bus_q/arready">
+      <obj_property name="ElementShortName">arready</obj_property>
+      <obj_property name="ObjectShortName">arready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/sh_ocl_bus_q/araddr">
+      <obj_property name="ElementShortName">araddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">araddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/sync_rst_n">
+      <obj_property name="ElementShortName">sync_rst_n</obj_property>
+      <obj_property name="ObjectShortName">sync_rst_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/sh_cl_flr_assert_q">
+      <obj_property name="ElementShortName">sh_cl_flr_assert_q</obj_property>
+      <obj_property name="ObjectShortName">sh_cl_flr_assert_q</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_state">
+      <obj_property name="ElementShortName">slv_state[2:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_state[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_state_nxt">
+      <obj_property name="ElementShortName">slv_state_nxt[2:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_state_nxt[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_arb_wr">
+      <obj_property name="ElementShortName">slv_arb_wr</obj_property>
+      <obj_property name="ObjectShortName">slv_arb_wr</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_cyc_wr">
+      <obj_property name="ElementShortName">slv_cyc_wr</obj_property>
+      <obj_property name="ObjectShortName">slv_cyc_wr</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_mx_addr">
+      <obj_property name="ElementShortName">slv_mx_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_mx_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_mx_rsp_ready">
+      <obj_property name="ElementShortName">slv_mx_rsp_ready</obj_property>
+      <obj_property name="ObjectShortName">slv_mx_rsp_ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_wr_req">
+      <obj_property name="ElementShortName">slv_wr_req</obj_property>
+      <obj_property name="ObjectShortName">slv_wr_req</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_rd_req">
+      <obj_property name="ElementShortName">slv_rd_req</obj_property>
+      <obj_property name="ObjectShortName">slv_rd_req</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_cyc_done">
+      <obj_property name="ElementShortName">slv_cyc_done</obj_property>
+      <obj_property name="ObjectShortName">slv_cyc_done</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_rdata">
+      <obj_property name="ElementShortName">slv_rdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_rdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_sel">
+      <obj_property name="ElementShortName">slv_sel[17:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_sel[17:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_tst_addr">
+      <obj_property name="ElementShortName">slv_tst_addr[15:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_tst_addr[15:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_tst_wdata">
+      <obj_property name="ElementShortName">slv_tst_wdata[15:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_tst_wdata[15:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_tst_wr">
+      <obj_property name="ElementShortName">slv_tst_wr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_tst_wr[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_tst_rd">
+      <obj_property name="ElementShortName">slv_tst_rd[15:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_tst_rd[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_mx_req_valid">
+      <obj_property name="ElementShortName">slv_mx_req_valid</obj_property>
+      <obj_property name="ObjectShortName">slv_mx_req_valid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/tst_slv_ack">
+      <obj_property name="ElementShortName">tst_slv_ack[15:0]</obj_property>
+      <obj_property name="ObjectShortName">tst_slv_ack[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/tst_slv_rdata">
+      <obj_property name="ElementShortName">tst_slv_rdata[15:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">tst_slv_rdata[15:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_did_req">
+      <obj_property name="ElementShortName">slv_did_req</obj_property>
+      <obj_property name="ObjectShortName">slv_did_req</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_req_rd_addr">
+      <obj_property name="ElementShortName">slv_req_rd_addr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_req_rd_addr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_req_wr_addr">
+      <obj_property name="ElementShortName">slv_req_wr_addr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_req_wr_addr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_req_rd_id">
+      <obj_property name="ElementShortName">slv_req_rd_id[5:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_req_rd_id[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/slv_req_wr_id">
+      <obj_property name="ElementShortName">slv_req_wr_id[5:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_req_wr_id[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/algo_enable">
+      <obj_property name="ElementShortName">algo_enable</obj_property>
+      <obj_property name="ObjectShortName">algo_enable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/ddb_cnt_enbl">
+      <obj_property name="ElementShortName">ddb_cnt_enbl</obj_property>
+      <obj_property name="ObjectShortName">ddb_cnt_enbl</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/cnt_value">
+      <obj_property name="ElementShortName">cnt_value[7:0]</obj_property>
+      <obj_property name="ObjectShortName">cnt_value[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/ddb_value">
+      <obj_property name="ElementShortName">ddb_value[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ddb_value[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/cnt_valid">
+      <obj_property name="ElementShortName">cnt_valid</obj_property>
+      <obj_property name="ObjectShortName">cnt_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/ddb_valid">
+      <obj_property name="ElementShortName">ddb_valid</obj_property>
+      <obj_property name="ObjectShortName">ddb_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/ddb_ready">
+      <obj_property name="ElementShortName">ddb_ready</obj_property>
+      <obj_property name="ObjectShortName">ddb_ready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/card/fpga/CL/CL_OCL_SLV/NUM_TST">
+      <obj_property name="ElementShortName">NUM_TST[31:0]</obj_property>
+      <obj_property name="ObjectShortName">NUM_TST[31:0]</obj_property>
+   </wvobject>
+</wave_config>

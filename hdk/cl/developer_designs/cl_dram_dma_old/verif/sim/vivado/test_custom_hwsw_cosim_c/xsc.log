@@ -1,0 +1,5 @@
+Multi-threading is on. Using 14 slave threads.
+Running compilation flow
+Waiting for 1 sub-compilation(s) to finish...
+ERROR: [XSIM 43-3410] Failed to compile one of the generated C files.
+Please recompile with "-mt off -v 1" switch to identify which design unit failed.
