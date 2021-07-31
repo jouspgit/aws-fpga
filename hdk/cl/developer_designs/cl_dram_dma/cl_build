@@ -1,0 +1,4 @@
+#!/bin/bash
+cd build/scripts
+./aws_build_dcp_from_cl.sh -foreground
+cd ../..

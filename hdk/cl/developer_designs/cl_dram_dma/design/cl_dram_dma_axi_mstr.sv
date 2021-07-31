@@ -402,7 +402,7 @@ module cl_dram_dma_axi_mstr (
   wire s2mm_introut;
   wire [31 : 0] axi_dma_tstvec;
 
-  // temporary
+  // temporary, to replace with actual jpeg-xs module.
   assign axi_mstr_jpeg_cfg_bus.awready = 1'b0;
   assign axi_mstr_jpeg_cfg_bus.wready  = 1'b0;
   assign axi_mstr_jpeg_cfg_bus.bresp   = 2'b0;

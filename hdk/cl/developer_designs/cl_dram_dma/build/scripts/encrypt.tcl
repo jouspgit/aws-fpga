@@ -39,9 +39,7 @@ file copy -force $CL_DIR/design/cl_dram_dma_defines.vh             $TARGET_DIR
 file copy -force $CL_DIR/design/cl_id_defines.vh                   $TARGET_DIR
 file copy -force $CL_DIR/design/cl_dram_dma_pkg.sv                 $TARGET_DIR
 file copy -force $CL_DIR/design/cl_dram_dma.sv                     $TARGET_DIR
-file copy -force $CL_DIR/design/cl_ding_ding_bottle.vhd            $TARGET_DIR
 file copy -force $CL_DIR/design/cl_tst.sv                          $TARGET_DIR
-file copy -force $CL_DIR/design/cl_tst_ddb.sv                      $TARGET_DIR
 file copy -force $CL_DIR/design/cl_int_tst.sv                      $TARGET_DIR
 file copy -force $CL_DIR/design/mem_scrb.sv                        $TARGET_DIR
 file copy -force $CL_DIR/design/cl_tst_scrb.sv                     $TARGET_DIR

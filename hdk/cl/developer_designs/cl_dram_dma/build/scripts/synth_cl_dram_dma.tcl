@@ -43,7 +43,9 @@ puts "AWS FPGA: ([clock format [clock seconds] -format %T]) Reading developer's 
 # reading .v, .vh, nor .inc files
 
 read_verilog -sv [glob $ENC_SRC_DIR/*.?v]
-read_vhdl [ glob $ENC_SRC_DIR/*.vhd ]
+
+# if vhdl files, uncomment next line.
+#read_vhdl [ glob $ENC_SRC_DIR/*.vhd ]
 
 
 #---- End of section replaced by User ----
@@ -65,6 +67,15 @@ read_verilog -sv [ list \
 ]
 
 puts "AWS FPGA: Reading IP blocks";
+
+#Read Custom IP
+read_ip [ list \
+  $HDK_SHELL_DESIGN_DIR/ip/axi_dma_0/axi_dma_0.xci \
+  $HDK_SHELL_DESIGN_DIR/ip/axi_crossbar_0/axi_crossbar_0.xci
+]
+
+report_ip_status -file myreport.txt
+
 
 #Read DDR IP
 read_ip [ list \

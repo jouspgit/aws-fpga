@@ -105,9 +105,6 @@ wire [3 : 0] m_axi_crossbar_rresp;
 wire [1 : 0] m_axi_crossbar_rvalid;
 wire [1 : 0] m_axi_crossbar_rready;
 
-assign sh_ocl_bus_q.araddr =0;
-assign sh_ocl_bus_q.rdata =0;
-assign sh_ocl_bus_q.rresp =0;
 
 axi_crossbar_0 DMA_JPEG_CROSSBAR (
   .aclk(clk),                    // input wire aclk
