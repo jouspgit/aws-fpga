@@ -76,6 +76,10 @@ read_ip [ list \
 
 report_ip_status -file myreport.txt
 
+upgrade_ip [get_ips]
+generate_target all [get_ips]
+
+report_ip_status -file myreport2.txt
 
 #Read DDR IP
 read_ip [ list \
@@ -133,8 +137,8 @@ eval [concat synth_design -top $CL_MODULE -verilog_define XSDB_SLV_DIS $VDEFINES
 
 set failval [catch {exec grep "FAIL" failfast.csv}]
 if { $failval==0 } {
-	puts "AWS FPGA: FATAL ERROR--Resource utilization error; check failfast.csv for details"
-	exit 1
+  puts "AWS FPGA: FATAL ERROR--Resource utilization error; check failfast.csv for details"
+  exit 1
 }
 
 puts "AWS FPGA: ([clock format [clock seconds] -format %T]) writing post synth checkpoint.";
