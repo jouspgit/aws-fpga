@@ -425,33 +425,33 @@ module cl_dram_dma_axi_mstr (
   .s_axi_lite_aclk(aclk),                // input wire s_axi_lite_aclk
   .m_axi_mm2s_aclk(aclk),                // input wire m_axi_mm2s_aclk
   .m_axi_s2mm_aclk(aclk),                // input wire m_axi_s2mm_aclk
-  .axi_resetn(aresetn),                          // input wire axi_resetn
+  .axi_resetn(aresetn),                  // input wire axi_resetn
 
   // AXI-L Register access
   .s_axi_lite_awvalid(axi_mstr_dma_cfg_bus.awvalid),          // input wire s_axi_lite_awvalid
   .s_axi_lite_awready(axi_mstr_dma_cfg_bus.awready),          // output wire s_axi_lite_awready
-  .s_axi_lite_awaddr(axi_mstr_dma_cfg_bus.awaddr[9:0]),            // input wire [9 : 0] s_axi_lite_awaddr
+  .s_axi_lite_awaddr(axi_mstr_dma_cfg_bus.awaddr[9:0]),       // input wire [9 : 0] s_axi_lite_awaddr
   .s_axi_lite_wvalid(axi_mstr_dma_cfg_bus.wvalid),            // input wire s_axi_lite_wvalid
   .s_axi_lite_wready(axi_mstr_dma_cfg_bus.wready),            // output wire s_axi_lite_wready
-  .s_axi_lite_wdata(axi_mstr_dma_cfg_bus.wdata[31:0]),              // input wire [31 : 0] s_axi_lite_wdata
+  .s_axi_lite_wdata(axi_mstr_dma_cfg_bus.wdata[31:0]),        // input wire [31 : 0] s_axi_lite_wdata
   .s_axi_lite_bresp(axi_mstr_dma_cfg_bus.bresp),              // output wire [1 : 0] s_axi_lite_bresp
   .s_axi_lite_bvalid(axi_mstr_dma_cfg_bus.bvalid),            // output wire s_axi_lite_bvalid
   .s_axi_lite_bready(axi_mstr_dma_cfg_bus.bready),            // input wire s_axi_lite_bready
   .s_axi_lite_arvalid(axi_mstr_dma_cfg_bus.arvalid),          // input wire s_axi_lite_arvalid
   .s_axi_lite_arready(axi_mstr_dma_cfg_bus.arready),          // output wire s_axi_lite_arready
-  .s_axi_lite_araddr(axi_mstr_dma_cfg_bus.araddr[9:0]),            // input wire [9 : 0] s_axi_lite_araddr
+  .s_axi_lite_araddr(axi_mstr_dma_cfg_bus.araddr[9:0]),       // input wire [9 : 0] s_axi_lite_araddr
   .s_axi_lite_rvalid(axi_mstr_dma_cfg_bus.rvalid),            // output wire s_axi_lite_rvalid
   .s_axi_lite_rready(axi_mstr_dma_cfg_bus.rready),            // input wire s_axi_lite_rready
-  .s_axi_lite_rdata(axi_mstr_dma_cfg_bus.rdata[31:0]),              // output wire [31 : 0] s_axi_lite_rdata
+  .s_axi_lite_rdata(axi_mstr_dma_cfg_bus.rdata[31:0]),        // output wire [31 : 0] s_axi_lite_rdata
   .s_axi_lite_rresp(axi_mstr_dma_cfg_bus.rresp),              // output wire [1 : 0] s_axi_lite_rresp
 
   // AXI4 Read, makes ar output requests to DDR and receives read data
   .m_axi_mm2s_araddr(cl_axi_mstr_bus.araddr),            // output wire [63 : 0] m_axi_mm2s_araddr
   .m_axi_mm2s_arlen(cl_axi_mstr_bus.arlen),              // output wire [7 : 0] m_axi_mm2s_arlen
   .m_axi_mm2s_arsize(cl_axi_mstr_bus.arsize),            // output wire [2 : 0] m_axi_mm2s_arsize
-  .m_axi_mm2s_arburst(m_axi_mm2s_arburst),          // output wire [1 : 0] m_axi_mm2s_arburst
-  .m_axi_mm2s_arprot(m_axi_mm2s_arprot),            // output wire [2 : 0] m_axi_mm2s_arprot
-  .m_axi_mm2s_arcache(m_axi_mm2s_arcache),          // output wire [3 : 0] m_axi_mm2s_arcache
+  .m_axi_mm2s_arburst(m_axi_mm2s_arburst),               // output wire [1 : 0] m_axi_mm2s_arburst
+  .m_axi_mm2s_arprot(m_axi_mm2s_arprot),                 // output wire [2 : 0] m_axi_mm2s_arprot
+  .m_axi_mm2s_arcache(m_axi_mm2s_arcache),               // output wire [3 : 0] m_axi_mm2s_arcache
   .m_axi_mm2s_arvalid(cl_axi_mstr_bus.arvalid),          // output wire m_axi_mm2s_arvalid
   .m_axi_mm2s_arready(cl_axi_mstr_bus.arready),          // input wire m_axi_mm2s_arready
   .m_axi_mm2s_rdata(cl_axi_mstr_bus.rdata),              // input wire [511 : 0] m_axi_mm2s_rdata
@@ -481,9 +481,9 @@ module cl_dram_dma_axi_mstr (
   .m_axi_s2mm_awaddr(cl_axi_mstr_bus.awaddr),            // output wire [63 : 0] m_axi_s2mm_awaddr
   .m_axi_s2mm_awlen(cl_axi_mstr_bus.awlen),              // output wire [7 : 0] m_axi_s2mm_awlen
   .m_axi_s2mm_awsize(cl_axi_mstr_bus.awsize),            // output wire [2 : 0] m_axi_s2mm_awsize
-  .m_axi_s2mm_awburst(m_axi_s2mm_awburst),          // output wire [1 : 0] m_axi_s2mm_awburst
-  .m_axi_s2mm_awprot(m_axi_s2mm_awprot),            // output wire [2 : 0] m_axi_s2mm_awprot
-  .m_axi_s2mm_awcache(m_axi_s2mm_awcache),          // output wire [3 : 0] m_axi_s2mm_awcache
+  .m_axi_s2mm_awburst(m_axi_s2mm_awburst),               // output wire [1 : 0] m_axi_s2mm_awburst
+  .m_axi_s2mm_awprot(m_axi_s2mm_awprot),                 // output wire [2 : 0] m_axi_s2mm_awprot
+  .m_axi_s2mm_awcache(m_axi_s2mm_awcache),               // output wire [3 : 0] m_axi_s2mm_awcache
   .m_axi_s2mm_awvalid(cl_axi_mstr_bus.awvalid),          // output wire m_axi_s2mm_awvalid
   .m_axi_s2mm_awready(cl_axi_mstr_bus.awready),          // input wire m_axi_s2mm_awready
   .m_axi_s2mm_wdata(cl_axi_mstr_bus.wdata),              // output wire [511 : 0] m_axi_s2mm_wdata
@@ -499,7 +499,7 @@ module cl_dram_dma_axi_mstr (
   // Interrupt AXI4 to Stream
   .mm2s_introut(mm2s_introut),                      // output wire mm2s_introut
 
-  // Interrput Stream to AXI4
+  // Interrupt Stream to AXI4
   .s2mm_introut(s2mm_introut),                      // output wire s2mm_introut
 
   // Debug signals

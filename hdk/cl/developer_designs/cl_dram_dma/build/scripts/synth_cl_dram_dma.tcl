@@ -74,12 +74,14 @@ read_ip [ list \
   $HDK_SHELL_DESIGN_DIR/ip/axi_crossbar_0/axi_crossbar_0.xci
 ]
 
-report_ip_status -file myreport.txt
+# Uncomment the following lines for status and upgrade/generation of stale IPs.
+#report_ip_status -file myreport.txt
 
-upgrade_ip [get_ips]
-generate_target all [get_ips]
+#upgrade_ip [get_ips]
+#generate_target all [get_ips]
 
-report_ip_status -file myreport2.txt
+#report_ip_status -file myreport2.txt
+
 
 #Read DDR IP
 read_ip [ list \
