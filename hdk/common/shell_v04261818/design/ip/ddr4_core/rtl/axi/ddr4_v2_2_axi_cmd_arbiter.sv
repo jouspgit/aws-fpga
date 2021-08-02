@@ -50,7 +50,7 @@
 // /___/  \  /    Vendor             : Xilinx
 // \   \   \/     Version            : 1.1
 //  \   \         Application        : MIG
-//  /   /         Filename           : ddr4_v2_2_3_axi_cmd_arbiter.sv
+//  /   /         Filename           : ddr4_v2_2_9_axi_cmd_arbiter.sv
 // /___/   /\     Date Last Modified : $Date: 2014/09/03 $
 // \   \  /  \    Date Created       : Thu Apr 17 2014
 //  \___\/\___\
@@ -70,7 +70,7 @@
 `timescale 1ps/1ps
 `default_nettype none
 
-module ddr4_v2_2_3_axi_cmd_arbiter #
+module ddr4_v2_2_9_axi_cmd_arbiter #
 (
 ///////////////////////////////////////////////////////////////////////////////
 // Parameter Definitions
@@ -184,9 +184,9 @@ generate
         rd_wait_limit <= 5'b0;
         rd_starve_cnt <= (C_MC_BURST_LEN * 2);
       end else if (mc_app_rdy) begin
-        if (~arvalid | rd_cmd_en)
+        if (~arvalid)
           rd_wait_limit <= 5'b0;
-        else
+        else if(~rd_cmd_en)
           rd_wait_limit <= rd_wait_limit + C_MC_BURST_LEN;
 
         if (rd_cmd_en & ~rd_starve_cnt[8])
@@ -199,9 +199,9 @@ generate
         wr_wait_limit <= 5'b0;
         wr_starve_cnt <= (C_MC_BURST_LEN * 2);
       end else if (mc_app_rdy) begin
-        if (~awvalid | wr_cmd_en)
+        if (~awvalid)
           wr_wait_limit <= 5'b0;
-        else
+        else if(~wr_cmd_en)
           wr_wait_limit <= wr_wait_limit + C_MC_BURST_LEN;
 
         if (wr_cmd_en & ~wr_starve_cnt[8])

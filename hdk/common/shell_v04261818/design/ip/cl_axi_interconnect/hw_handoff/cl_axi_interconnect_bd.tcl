@@ -18,6 +18,19 @@ variable script_folder
 set script_folder [_tcl::get_script_folder]
 
 ################################################################
+# Check if script is running in correct Vivado version.
+################################################################
+set scripts_vivado_version 2020.1
+set current_vivado_version [version -short]
+
+if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
+   puts ""
+   catch {common::send_gid_msg -ssname BD::TCL -id 2041 -severity "ERROR" "This script was generated using Vivado <$scripts_vivado_version> and is being run in <$current_vivado_version> of Vivado. Please run the script in Vivado <$scripts_vivado_version> then open the design in Vivado <$current_vivado_version>. Upgrade the design by running \"Tools => Report => Report IP Status...\", then run write_bd_tcl to create an updated script."}
+
+   return 1
+}
+
+################################################################
 # START
 ################################################################
 
@@ -38,70 +51,68 @@ if { $list_projs eq "" } {
 variable design_name
 set design_name cl_axi_interconnect
 
-# If you do not already have an existing IP Integrator design open,
-# you can create a design using the following command:
-#    create_bd_design $design_name
+# This script was generated for a remote BD. To create a non-remote design,
+# change the variable <run_remote_bd_flow> to <0>.
 
-# Creating design if needed
-set errMsg ""
-set nRet 0
+set run_remote_bd_flow 1
+if { $run_remote_bd_flow == 1 } {
+  # Set the reference directory for source file relative paths (by default 
+  # the value is script directory path)
+  set origin_dir ./ip
 
-set cur_design [current_bd_design -quiet]
-set list_cells [get_bd_cells -quiet]
+  # Use origin directory path location variable, if specified in the tcl shell
+  if { [info exists ::origin_dir_loc] } {
+     set origin_dir $::origin_dir_loc
+  }
 
-if { ${design_name} eq "" } {
-   # USE CASES:
-   #    1) Design_name not set
+  set str_bd_folder [file normalize ${origin_dir}]
+  set str_bd_filepath ${str_bd_folder}/${design_name}/${design_name}.bd
 
-   set errMsg "Please set the variable <design_name> to a non-empty value."
-   set nRet 1
+  # Check if remote design exists on disk
+  if { [file exists $str_bd_filepath ] == 1 } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2030 -severity "ERROR" "The remote BD file path <$str_bd_filepath> already exists!"}
+     common::send_gid_msg -ssname BD::TCL -id 2031 -severity "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0>."
+     common::send_gid_msg -ssname BD::TCL -id 2032 -severity "INFO" "Also make sure there is no design <$design_name> existing in your current project."
 
-} elseif { ${cur_design} ne "" && ${list_cells} eq "" } {
-   # USE CASES:
-   #    2): Current design opened AND is empty AND names same.
-   #    3): Current design opened AND is empty AND names diff; design_name NOT in project.
-   #    4): Current design opened AND is empty AND names diff; design_name exists in project.
+     return 1
+  }
 
-   if { $cur_design ne $design_name } {
-      common::send_msg_id "BD_TCL-001" "INFO" "Changing value of <design_name> from <$design_name> to <$cur_design> since current design is empty."
-      set design_name [get_property NAME $cur_design]
-   }
-   common::send_msg_id "BD_TCL-002" "INFO" "Constructing design in IPI design <$cur_design>..."
+  # Check if design exists in memory
+  set list_existing_designs [get_bd_designs -quiet $design_name]
+  if { $list_existing_designs ne "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2033 -severity "ERROR" "The design <$design_name> already exists in this project! Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
 
-} elseif { ${cur_design} ne "" && $list_cells ne "" && $cur_design eq $design_name } {
-   # USE CASES:
-   #    5) Current design opened AND has components AND same names.
+     common::send_gid_msg -ssname BD::TCL -id 2034 -severity "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
 
-   set errMsg "Design <$design_name> already exists in your project, please set the variable <design_name> to another value."
-   set nRet 1
-} elseif { [get_files -quiet ${design_name}.bd] ne "" } {
-   # USE CASES: 
-   #    6) Current opened design, has components, but diff names, design_name exists in project.
-   #    7) No opened design, design_name exists in project.
+     return 1
+  }
 
-   set errMsg "Design <$design_name> already exists in your project, please set the variable <design_name> to another value."
-   set nRet 2
+  # Check if design exists on disk within project
+  set list_existing_designs [get_files -quiet */${design_name}.bd]
+  if { $list_existing_designs ne "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2035 -severity "ERROR" "The design <$design_name> already exists in this project at location:
+    $list_existing_designs"}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2036 -severity "ERROR" "Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
 
+     common::send_gid_msg -ssname BD::TCL -id 2037 -severity "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
+
+     return 1
+  }
+
+  # Now can create the remote BD
+  # NOTE - usage of <-dir> will create <$str_bd_folder/$design_name/$design_name.bd>
+  create_bd_design -dir $str_bd_folder $design_name
 } else {
-   # USE CASES:
-   #    8) No opened design, design_name not in project.
-   #    9) Current opened design, has components, but diff names, design_name not in project.
 
-   common::send_msg_id "BD_TCL-003" "INFO" "Currently there is no design <$design_name> in project, so creating one..."
+  # Create regular design
+  if { [catch {create_bd_design $design_name} errmsg] } {
+     common::send_gid_msg -ssname BD::TCL -id 2038 -severity "INFO" "Please set a different value to variable <design_name>."
 
-   create_bd_design $design_name
-
-   common::send_msg_id "BD_TCL-004" "INFO" "Making design <$design_name> as current_bd_design."
-   current_bd_design $design_name
-
+     return 1
+  }
 }
 
-common::send_msg_id "BD_TCL-005" "INFO" "Currently the variable <design_name> is equal to \"$design_name\"."
-
-if { $nRet != 0 } {
-   catch {common::send_msg_id "BD_TCL-114" "ERROR" $errMsg}
-   return $nRet
-}
+current_bd_design $design_name
 
 ##################################################################
 # DESIGN PROCs
@@ -123,14 +134,14 @@ proc create_root_design { parentCell } {
   # Get object for parentCell
   set parentObj [get_bd_cells $parentCell]
   if { $parentObj == "" } {
-     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2090 -severity "ERROR" "Unable to find parent cell <$parentCell>!"}
      return
   }
 
   # Make sure parentObj is hier blk
   set parentType [get_property TYPE $parentObj]
   if { $parentType ne "hier" } {
-     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2091 -severity "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
      return
   }
 
@@ -151,6 +162,7 @@ proc create_root_design { parentCell } {
    CONFIG.NUM_WRITE_OUTSTANDING {16} \
    CONFIG.PROTOCOL {AXI4} \
    ] $M00_AXI
+
   set M01_AXI [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M01_AXI ]
   set_property -dict [ list \
    CONFIG.ADDR_WIDTH {64} \
@@ -160,6 +172,7 @@ proc create_root_design { parentCell } {
    CONFIG.NUM_WRITE_OUTSTANDING {16} \
    CONFIG.PROTOCOL {AXI4} \
    ] $M01_AXI
+
   set M02_AXI [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M02_AXI ]
   set_property -dict [ list \
    CONFIG.ADDR_WIDTH {64} \
@@ -169,6 +182,7 @@ proc create_root_design { parentCell } {
    CONFIG.NUM_WRITE_OUTSTANDING {16} \
    CONFIG.PROTOCOL {AXI4} \
    ] $M02_AXI
+
   set M03_AXI [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M03_AXI ]
   set_property -dict [ list \
    CONFIG.ADDR_WIDTH {64} \
@@ -178,6 +192,7 @@ proc create_root_design { parentCell } {
    CONFIG.NUM_WRITE_OUTSTANDING {16} \
    CONFIG.PROTOCOL {AXI4} \
    ] $M03_AXI
+
   set S00_AXI [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S00_AXI ]
   set_property -dict [ list \
    CONFIG.ADDR_WIDTH {64} \
@@ -209,6 +224,7 @@ proc create_root_design { parentCell } {
    CONFIG.WUSER_BITS_PER_BYTE {0} \
    CONFIG.WUSER_WIDTH {0} \
    ] $S00_AXI
+
   set S01_AXI [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S01_AXI ]
   set_property -dict [ list \
    CONFIG.ADDR_WIDTH {64} \
@@ -242,15 +258,13 @@ proc create_root_design { parentCell } {
    CONFIG.WUSER_WIDTH {0} \
    ] $S01_AXI
 
+
   # Create ports
-  set ACLK [ create_bd_port -dir I -type clk ACLK ]
-  set_property -dict [ list \
-   CONFIG.FREQ_HZ {250000000} \
- ] $ACLK
+  set ACLK [ create_bd_port -dir I -type clk -freq_hz 250000000 ACLK ]
   set ARESETN [ create_bd_port -dir I -type rst ARESETN ]
 
   # Create instance: axi_interconnect_0, and set properties
-  set axi_interconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect axi_interconnect_0 ]
+  set axi_interconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_0 ]
   set_property -dict [ list \
    CONFIG.ENABLE_ADVANCED_OPTIONS {1} \
    CONFIG.M00_HAS_REGSLICE {4} \
@@ -278,19 +292,20 @@ proc create_root_design { parentCell } {
   connect_bd_net -net ARESETN_1 [get_bd_ports ARESETN] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/M01_ARESETN] [get_bd_pins axi_interconnect_0/M02_ARESETN] [get_bd_pins axi_interconnect_0/M03_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axi_interconnect_0/S01_ARESETN]
 
   # Create address segments
-  create_bd_addr_seg -range 0x000400000000 -offset 0x00000000 [get_bd_addr_spaces S00_AXI] [get_bd_addr_segs M00_AXI/Reg] SEG_M00_AXI_Reg
-  create_bd_addr_seg -range 0x000400000000 -offset 0x00000000 [get_bd_addr_spaces S01_AXI] [get_bd_addr_segs M00_AXI/Reg] SEG_M00_AXI_Reg
-  create_bd_addr_seg -range 0x000400000000 -offset 0x000400000000 [get_bd_addr_spaces S00_AXI] [get_bd_addr_segs M01_AXI/Reg] SEG_M01_AXI_Reg
-  create_bd_addr_seg -range 0x000400000000 -offset 0x000400000000 [get_bd_addr_spaces S01_AXI] [get_bd_addr_segs M01_AXI/Reg] SEG_M01_AXI_Reg
-  create_bd_addr_seg -range 0x000400000000 -offset 0x000800000000 [get_bd_addr_spaces S00_AXI] [get_bd_addr_segs M02_AXI/Reg] SEG_M02_AXI_Reg
-  create_bd_addr_seg -range 0x000400000000 -offset 0x000800000000 [get_bd_addr_spaces S01_AXI] [get_bd_addr_segs M02_AXI/Reg] SEG_M02_AXI_Reg
-  create_bd_addr_seg -range 0x000400000000 -offset 0x000C00000000 [get_bd_addr_spaces S00_AXI] [get_bd_addr_segs M03_AXI/Reg] SEG_M03_AXI_Reg
-  create_bd_addr_seg -range 0x000400000000 -offset 0x000C00000000 [get_bd_addr_spaces S01_AXI] [get_bd_addr_segs M03_AXI/Reg] SEG_M03_AXI_Reg
+  assign_bd_address -offset 0x00000000 -range 0x000400000000 -target_address_space [get_bd_addr_spaces S00_AXI] [get_bd_addr_segs M00_AXI/Reg] -force
+  assign_bd_address -offset 0x00000000 -range 0x000400000000 -target_address_space [get_bd_addr_spaces S01_AXI] [get_bd_addr_segs M00_AXI/Reg] -force
+  assign_bd_address -offset 0x000400000000 -range 0x000400000000 -target_address_space [get_bd_addr_spaces S00_AXI] [get_bd_addr_segs M01_AXI/Reg] -force
+  assign_bd_address -offset 0x000400000000 -range 0x000400000000 -target_address_space [get_bd_addr_spaces S01_AXI] [get_bd_addr_segs M01_AXI/Reg] -force
+  assign_bd_address -offset 0x000800000000 -range 0x000400000000 -target_address_space [get_bd_addr_spaces S00_AXI] [get_bd_addr_segs M02_AXI/Reg] -force
+  assign_bd_address -offset 0x000800000000 -range 0x000400000000 -target_address_space [get_bd_addr_spaces S01_AXI] [get_bd_addr_segs M02_AXI/Reg] -force
+  assign_bd_address -offset 0x000C00000000 -range 0x000400000000 -target_address_space [get_bd_addr_spaces S00_AXI] [get_bd_addr_segs M03_AXI/Reg] -force
+  assign_bd_address -offset 0x000C00000000 -range 0x000400000000 -target_address_space [get_bd_addr_spaces S01_AXI] [get_bd_addr_segs M03_AXI/Reg] -force
 
 
   # Restore current instance
   current_bd_instance $oldCurInst
 
+  validate_bd_design
   save_bd_design
 }
 # End of create_root_design()

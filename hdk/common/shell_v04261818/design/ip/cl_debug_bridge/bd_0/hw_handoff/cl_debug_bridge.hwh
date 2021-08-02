@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Feb 21 11:24:34 2018" VIVADOVERSION="2017.4.op">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Aug  2 08:58:15 2021" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="virtexuplus" DEVICE="xcvu9p" NAME="bd_a493" PACKAGE="flgb2104" SPEEDGRADE="-2"/>
 
@@ -9,18 +9,66 @@
         <CONNECTION INSTANCE="xsdbm" PORT="clk"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" NAME="S_BSCAN_bscanid_en" SIGIS="undef"/>
-    <PORT DIR="I" NAME="S_BSCAN_capture" SIGIS="undef"/>
-    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="S_BSCAN_drck" SIGIS="clk"/>
-    <PORT DIR="I" NAME="S_BSCAN_reset" SIGIS="rst"/>
-    <PORT DIR="I" NAME="S_BSCAN_runtest" SIGIS="undef"/>
-    <PORT DIR="I" NAME="S_BSCAN_sel" SIGIS="undef"/>
-    <PORT DIR="I" NAME="S_BSCAN_shift" SIGIS="undef"/>
-    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="S_BSCAN_tck" SIGIS="clk"/>
-    <PORT DIR="I" NAME="S_BSCAN_tdi" SIGIS="undef"/>
-    <PORT DIR="O" NAME="S_BSCAN_tdo" SIGIS="undef"/>
-    <PORT DIR="I" NAME="S_BSCAN_tms" SIGIS="undef"/>
-    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="S_BSCAN_update" SIGIS="clk"/>
+    <PORT DIR="I" NAME="S_BSCAN_bscanid_en" SIGIS="undef" SIGNAME="lut_buffer_bscanid_en_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="lut_buffer" PORT="bscanid_en_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="S_BSCAN_capture" SIGIS="undef" SIGNAME="lut_buffer_capture_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="lut_buffer" PORT="capture_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="S_BSCAN_drck" SIGIS="clk" SIGNAME="lut_buffer_drck_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="lut_buffer" PORT="drck_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="S_BSCAN_reset" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="lut_buffer_reset_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="lut_buffer" PORT="reset_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="S_BSCAN_runtest" SIGIS="undef" SIGNAME="lut_buffer_runtest_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="lut_buffer" PORT="runtest_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="S_BSCAN_sel" SIGIS="undef" SIGNAME="lut_buffer_sel_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="lut_buffer" PORT="sel_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="S_BSCAN_shift" SIGIS="undef" SIGNAME="lut_buffer_shift_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="lut_buffer" PORT="shift_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="S_BSCAN_tck" SIGIS="clk" SIGNAME="lut_buffer_tck_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="lut_buffer" PORT="tck_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="S_BSCAN_tdi" SIGIS="undef" SIGNAME="lut_buffer_tdi_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="lut_buffer" PORT="tdi_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="S_BSCAN_tdo" SIGIS="undef" SIGNAME="lut_buffer_tdo_o">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="lut_buffer" PORT="tdo_o"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="S_BSCAN_tms" SIGIS="undef" SIGNAME="lut_buffer_tms_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="lut_buffer" PORT="tms_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="S_BSCAN_update" SIGIS="clk" SIGNAME="lut_buffer_update_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="lut_buffer" PORT="update_i"/>
+      </CONNECTIONS>
+    </PORT>
   </EXTERNALPORTS>
 
   <EXTERNALINTERFACES>
@@ -43,7 +91,7 @@
   </EXTERNALINTERFACES>
 
   <MODULES>
-    <MODULE FULLNAME="/lut_buffer" HWVERSION="2.0" INSTANCE="lut_buffer" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="lut_buffer" VLNV="xilinx.com:ip:lut_buffer:2.0">
+    <MODULE COREREVISION="0" FULLNAME="/lut_buffer" HWVERSION="2.0" INSTANCE="lut_buffer" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="lut_buffer" VLNV="xilinx.com:ip:lut_buffer:2.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="C_EN_BSCANID_VEC" VALUE="0"/>
@@ -51,18 +99,66 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" NAME="tdi_i" SIGIS="undef"/>
-        <PORT DIR="I" NAME="tms_i" SIGIS="undef"/>
-        <PORT DIR="I" NAME="tck_i" SIGIS="clk"/>
-        <PORT DIR="I" NAME="drck_i" SIGIS="clk"/>
-        <PORT DIR="I" NAME="sel_i" SIGIS="undef"/>
-        <PORT DIR="I" NAME="shift_i" SIGIS="undef"/>
-        <PORT DIR="I" NAME="update_i" SIGIS="clk"/>
-        <PORT DIR="I" NAME="capture_i" SIGIS="undef"/>
-        <PORT DIR="I" NAME="runtest_i" SIGIS="undef"/>
-        <PORT DIR="I" NAME="reset_i" SIGIS="rst"/>
-        <PORT DIR="I" NAME="bscanid_en_i" SIGIS="undef"/>
-        <PORT DIR="O" NAME="tdo_o" SIGIS="undef"/>
+        <PORT DIR="I" NAME="tdi_i" SIGIS="undef" SIGNAME="lut_buffer_tdi_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_a493_imp" PORT="S_BSCAN_tdi"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="tms_i" SIGIS="undef" SIGNAME="lut_buffer_tms_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_a493_imp" PORT="S_BSCAN_tms"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="tck_i" SIGIS="clk" SIGNAME="lut_buffer_tck_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_a493_imp" PORT="S_BSCAN_tck"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="drck_i" SIGIS="clk" SIGNAME="lut_buffer_drck_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_a493_imp" PORT="S_BSCAN_drck"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sel_i" SIGIS="undef" SIGNAME="lut_buffer_sel_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_a493_imp" PORT="S_BSCAN_sel"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="shift_i" SIGIS="undef" SIGNAME="lut_buffer_shift_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_a493_imp" PORT="S_BSCAN_shift"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="update_i" SIGIS="clk" SIGNAME="lut_buffer_update_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_a493_imp" PORT="S_BSCAN_update"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="capture_i" SIGIS="undef" SIGNAME="lut_buffer_capture_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_a493_imp" PORT="S_BSCAN_capture"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="runtest_i" SIGIS="undef" SIGNAME="lut_buffer_runtest_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_a493_imp" PORT="S_BSCAN_runtest"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="reset_i" SIGIS="rst" SIGNAME="lut_buffer_reset_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_a493_imp" PORT="S_BSCAN_reset"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="bscanid_en_i" SIGIS="undef" SIGNAME="lut_buffer_bscanid_en_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_a493_imp" PORT="S_BSCAN_bscanid_en"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="tdo_o" SIGIS="undef" SIGNAME="lut_buffer_tdo_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="bd_a493_imp" PORT="S_BSCAN_tdo"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" NAME="tdi_o" SIGIS="undef" SIGNAME="lut_buffer_tdi_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xsdbm" PORT="tdi"/>
@@ -159,7 +255,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE FULLNAME="/xsdbm" HWVERSION="3.0" INSTANCE="xsdbm" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xsdbm" VLNV="xilinx.com:ip:xsdbm:3.0">
+    <MODULE COREREVISION="0" FULLNAME="/xsdbm" HWVERSION="3.0" INSTANCE="xsdbm" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xsdbm" VLNV="xilinx.com:ip:xsdbm:3.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="C_FIFO_STYLE" VALUE="SUBCORE"/>

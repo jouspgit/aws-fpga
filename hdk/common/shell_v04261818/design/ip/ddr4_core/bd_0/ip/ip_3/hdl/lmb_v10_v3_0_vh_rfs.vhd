@@ -95,6 +95,7 @@ entity lmb_v10 is
     C_LMB_NUM_SLAVES     : integer := 4;
     C_LMB_DWIDTH     : integer := 32;
     C_LMB_AWIDTH     : integer := 32;
+    C_LMB_PROTOCOL   : integer := 0;
     C_EXT_RESET_HIGH : integer := 1
     );
 
@@ -148,6 +149,7 @@ architecture IMP of lmb_v10 is
   end component FDS;
 
   signal sys_rst_i    : std_logic;
+  signal Sl_Ready_i   : std_logic_vector(0 to C_LMB_NUM_SLAVES-1);
 
 begin  -- architecture IMP
 
@@ -173,6 +175,32 @@ begin  -- architecture IMP
       C => LMB_Clk,
       S => sys_rst_i);
 
+  -- Standard LMB protocol with RAM data read combinatorial through LMB controller 
+  Sl_Ready_LMB_Protocol_0 : if (C_LMB_PROTOCOL = 0) generate
+  begin
+    Sl_Ready_i <= Sl_Ready;
+  end generate Sl_Ready_LMB_Protocol_0;
+    
+  -- Timing optimized LMB protocol with RAM data read clocked in LMB controller
+  -- Sl_Ready needs to be clocked once to match clocked timing of DBus
+  -- Only works with MicroBlaze 8-stage pipe and C_LMB_PROTOCOL set to 1 on MicroBlaze
+  Sl_Ready_LMB_Protocol_1 : if (C_LMB_PROTOCOL = 1) generate
+  begin
+    -----------------------------------------------------------------------------
+    -- Provide clocked Sl_Ready
+    -----------------------------------------------------------------------------
+    Ready_DFF : process (LMB_Clk) is
+    begin
+      if LMB_Clk'event and LMB_Clk = '1' then
+        if SYS_Rst = '1' then
+          Sl_Ready_i <= (others => '0');
+        else
+          Sl_Ready_i <= Sl_Ready;
+        end if;
+      end if;
+    end process Ready_DFF;
+  end generate Sl_Ready_LMB_Protocol_1;
+  
   -----------------------------------------------------------------------------
   -- Drive all Master to Slave signals
   -----------------------------------------------------------------------------
@@ -226,7 +254,7 @@ begin  -- architecture IMP
     LMB_CE <= i;
   end process SI_CE_ORing;
 
-  DBus_Oring : process (Sl_Ready, Sl_DBus) is
+  DBus_Oring : process (Sl_Ready_i, Sl_DBus) is
     variable Res    : std_logic_vector(0 to C_LMB_DWIDTH-1);
     variable Tmp    : std_logic_vector(Sl_DBus'range);
     variable tmp_or : std_logic;
@@ -237,7 +265,7 @@ begin  -- architecture IMP
       -- First gating all data signals with their resp. ready signal
       for I in 0 to C_LMB_NUM_SLAVES-1 loop
         for J in 0 to C_LMB_DWIDTH-1 loop
-          tmp(I*C_LMB_DWIDTH + J) := Sl_Ready(I) and Sl_DBus(I*C_LMB_DWIDTH + J);
+          tmp(I*C_LMB_DWIDTH + J) := Sl_Ready_i(I) and Sl_DBus(I*C_LMB_DWIDTH + J);
         end loop;  -- J
       end loop;  -- I
       -- then oring the tmp signals together

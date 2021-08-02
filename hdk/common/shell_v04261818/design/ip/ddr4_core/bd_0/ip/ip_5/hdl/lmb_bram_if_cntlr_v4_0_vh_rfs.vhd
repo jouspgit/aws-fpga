@@ -97,6 +97,7 @@ package lmb_bram_if_funcs is
                               VIRTEXUPLUS,
                               KINTEXUPLUS,
                               SPARTAN7,
+                              VERSAL,
                               -- pragma xilinx_rtl_on
                               RTL
                              );
@@ -175,12 +176,15 @@ package body lmb_bram_if_funcs is
       return KINTEXU;
     elsif Equal_String(S, "zynquplus") or Equal_String(S, "zynquplusRFSOC") then
       return ZYNQUPLUS;
-    elsif Equal_String(S, "virtexuplus") or Equal_String(S, "virtexuplusHBM") then
+    elsif Equal_String(S, "virtexuplus") or Equal_String(S, "virtexuplusHBM") or
+          Equal_String(S, "virtexuplus58g") then
       return VIRTEXUPLUS;
     elsif Equal_String(S, "kintexuplus") then
       return KINTEXUPLUS;
     elsif Equal_String(S, "spartan7") then
       return SPARTAN7;
+    elsif Equal_String(S, "versal") or Equal_String(S, "everestea") then
+      return VERSAL;
     else
       -- assert (false) report "No known target family" severity failure;
       return RTL;
@@ -286,8 +290,8 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity MB_LUT6 is
   generic (
@@ -353,8 +357,8 @@ end architecture IMP;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity MB_MUXCY is
   generic (
@@ -396,8 +400,8 @@ end architecture IMP;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity MB_XORCY is
   generic (
@@ -437,8 +441,8 @@ end architecture IMP;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity MB_MUXF7 is
   generic (
@@ -480,8 +484,8 @@ end architecture IMP;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity MB_MUXF8 is
   generic (
@@ -523,8 +527,8 @@ end architecture IMP;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity MB_FDRE is
   generic (
@@ -674,9 +678,9 @@ end architecture IMP;
 library ieee;
 use ieee.std_logic_1164.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.all;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.all;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity XOR18 is 
   generic (
@@ -902,8 +906,8 @@ end architecture IMP;
 library ieee;
 use ieee.std_logic_1164.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity Parity is
   generic (
@@ -1247,9 +1251,9 @@ end architecture IMP;
 library ieee;
 use ieee.std_logic_1164.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.all;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.all;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity ParityEnable is
   generic (
@@ -1418,9 +1422,9 @@ end architecture IMP;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.all;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.all;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity checkbit_handler is
   generic (
@@ -1920,9 +1924,9 @@ end architecture IMP;
 library ieee;
 use ieee.std_logic_1164.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.all;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.all;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity Correct_One_Bit is
   generic (
@@ -2260,9 +2264,9 @@ end imp;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.all;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.all;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity axi_interface is
   generic (
@@ -2516,9 +2520,9 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_arith.all;
 use IEEE.std_logic_unsigned.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.all;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.all;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 entity lmb_mux is
   generic (
@@ -2531,7 +2535,8 @@ entity lmb_mux is
     C_LMB_AWIDTH : integer                   := 32;
     C_LMB_DWIDTH : integer                   := 32;
     C_ECC        : integer                   := 0;
-    C_NUM_LMB    : integer                   := 1);
+    C_NUM_LMB    : integer                   := 1;
+    C_LMB_PROTOCOL : integer                 := 0);
   port (
     LMB_Clk : in std_logic := '0';
     LMB_Rst : in std_logic := '0';
@@ -2636,7 +2641,6 @@ architecture imp of lmb_mux is
   end component checkbit_handler;
 
   signal one : std_logic;
-
 -------------------------------------------------------------------------------
 -- Begin architecture section
 -------------------------------------------------------------------------------
@@ -2747,6 +2751,8 @@ begin  -- VHDL_RTL
     signal ongoing     : natural range 0 to C_NUM_LMB-1;
     signal ongoing_new : natural range 0 to C_NUM_LMB-1;
     signal ongoing_Q   : natural range 0 to C_NUM_LMB-1;
+    signal ongoing_QQ  : natural range 0 to C_NUM_LMB-1;
+    signal ECC_ongoing : natural range 0 to C_NUM_LMB-1;
 
   begin
 
@@ -2971,9 +2977,9 @@ begin  -- VHDL_RTL
                         '0';
       Sl_Wait_vec(I)  <= Sl_Wait when ongoing_Q = I else
                          wait_vec(I);
-      Sl_UE_vec(I)    <= Sl_UE when ongoing_Q = I else
+      Sl_UE_vec(I)    <= Sl_UE when ECC_ongoing = I else
                         '0';
-      Sl_CE_vec(I)    <= Sl_CE when ongoing_Q = I else
+      Sl_CE_vec(I)    <= Sl_CE when ECC_ongoing = I else
                         '0';
     end generate lmb_mux_generate;
 
@@ -2987,6 +2993,19 @@ begin  -- VHDL_RTL
         end if;
       end if;
     end process OnGoing_Reg;
+
+    OnGoingQ_Reg : process (LMB_Clk) is
+    begin 
+      if (LMB_Clk'event and LMB_Clk = '1') then
+        if (LMB_Rst = '1') then
+          ongoing_QQ <= 0;
+        else
+          ongoing_QQ <= ongoing_Q;
+        end if;
+      end if;
+    end process OnGoingQ_Reg;
+
+    ECC_ongoing <= ongoing_QQ when C_LMB_PROTOCOL = 1 else ongoing_Q;
 
     Arbit : process (as_and_lmb_select_vec, wait_vec) is
       variable N : natural range 0 to C_NUM_LMB-1;
@@ -3109,8 +3128,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.all;
 
 entity lmb_bram_if_cntlr is
   generic (
@@ -3134,6 +3153,7 @@ entity lmb_bram_if_cntlr is
     C_CE_COUNTER_WIDTH         : integer                   := 0;
     C_WRITE_ACCESS             : integer                   := 2;
     C_NUM_LMB                  : integer                   := 1;
+    C_LMB_PROTOCOL             : integer                   := 0;
     -- BRAM generic
     C_BRAM_AWIDTH              : integer                   := 32;
     -- AXI generics
@@ -3233,8 +3253,8 @@ entity lmb_bram_if_cntlr is
     Interrupt : out std_logic);
 end lmb_bram_if_cntlr;
 
-library lmb_bram_if_cntlr_v4_0_14;
-use lmb_bram_if_cntlr_v4_0_14.lmb_bram_if_funcs.all;
+library lmb_bram_if_cntlr_v4_0_18;
+use lmb_bram_if_cntlr_v4_0_18.lmb_bram_if_funcs.all;
 
 architecture imp of lmb_bram_if_cntlr is
 
@@ -3253,7 +3273,8 @@ architecture imp of lmb_bram_if_cntlr is
     C_LMB_AWIDTH : integer                   := 32;
     C_LMB_DWIDTH : integer                   := 32;
     C_ECC        : integer                   := 0;
-    C_NUM_LMB    : integer                   := 1);
+    C_NUM_LMB    : integer                   := 1;
+    C_LMB_PROTOCOL : integer                 := 0);
   port (
     LMB_Clk : in std_logic := '0';
     LMB_Rst : in std_logic := '0';
@@ -3449,16 +3470,44 @@ begin
   -- undefined memory locations with zero.
   -- Added as a work-around until this is fixed in the simulation model.
   -----------------------------------------------------------------------------
-  Cleaning_machine: process (BRAM_Din_A) is
-  begin  -- process Cleaning_machine
-    -- Default assignments
-    bram_din_a_i <= BRAM_Din_A;
-    -- pragma translate_off
-    bram_din_a_i <= To_StdLogicVector(To_bitvector(BRAM_Din_A));
-    -- pragma translate_on
+  -- Standard LMB protocol with RAM data read combinatorial through LMB controller 
+  BRAM_DIN_LMB_Protocol_0 : if (C_LMB_PROTOCOL = 0) generate
+  begin
 
-  end process Cleaning_machine;
+    Cleaning_machine: process (BRAM_Din_A) is
+    begin  -- process Cleaning_machine
+      -- Default assignments
+      bram_din_a_i <= BRAM_Din_A;
+      -- pragma translate_off
+      bram_din_a_i <= To_StdLogicVector(To_bitvector(BRAM_Din_A));
+      -- pragma translate_on
 
+    end process Cleaning_machine;
+
+  end generate BRAM_DIN_LMB_Protocol_0;
+
+  -- Timing optimized LMB protocol with RAM data read clocked in LMB controller
+  -- Only works with MicroBlaze 8-stage pipe and C_LMB_PROTOCOL set to 1 on MicroBlaze
+  BRAM_DIN_LMB_Protocol_1 : if (C_LMB_PROTOCOL = 1) generate
+  begin
+
+    Cleaning_machine_DFF: process (LMB_Clk) is
+    begin  -- process Cleaning_machine
+      if LMB_Clk'event and LMB_Clk = '1' then
+        if LMB_Rst = '1' then
+          bram_din_a_i <= (others => '0');
+        else
+          -- Default assignments
+          bram_din_a_i <= BRAM_Din_A;
+          -- pragma translate_off
+          bram_din_a_i <= To_StdLogicVector(To_bitvector(BRAM_Din_A));
+          -- pragma translate_on
+        end if;
+      end if;
+    end process Cleaning_machine_DFF;
+
+  end generate BRAM_DIN_LMB_Protocol_1;
+  
   lmb_mux_I : lmb_mux
     generic map (
       C_TARGET     => C_TARGET,
@@ -3470,7 +3519,8 @@ begin
       C_LMB_AWIDTH => C_LMB_AWIDTH,
       C_LMB_DWIDTH => C_LMB_DWIDTH,
       C_ECC        => C_ECC,
-      C_NUM_LMB    => C_NUM_LMB)
+      C_NUM_LMB    => C_NUM_LMB,
+      C_LMB_PROTOCOL => C_LMB_PROTOCOL)
     port map (
       LMB_Clk          => LMB_Clk,
       LMB_Rst          => LMB_Rst,
@@ -3600,9 +3650,10 @@ begin
     -- Signals for read modify write operation when byte/half-word write
     signal write_access           : std_logic;
     signal full_word_write_access : std_logic;
+
     signal RdModifyWr_Read        : std_logic;  -- Read cycle in read modify write sequence
     signal RdModifyWr_Modify      : std_logic;  -- Modify cycle in read modify write sequence
-    signal RdModifyWr_Modify_i    : std_logic;  -- Modify cycle in read modify write sequence
+
     signal RdModifyWr_Write       : std_logic;  -- Write cycle in read modify write sequence
     signal LMB_ABus_Q             : std_logic_vector(0 to C_LMB_AWIDTH-1);
 
@@ -3613,6 +3664,8 @@ begin
     signal CE_Q              : std_logic;
     signal UE_Q              : std_logic;
 
+    signal Sl_Ready_ECC      : std_logic;    
+    
     -- Enable and address same for both data and ECC BRAM
     signal bram_en   : std_logic;
     signal bram_addr : std_logic_vector(0 to C_LMB_AWIDTH-1);
@@ -3642,9 +3695,6 @@ begin
 
     BRAM_EN_A <= bram_en;
 
-    -- ECC checking enable during access and when checking is turned on
-    enable_ecc <= ECC_EnableCheckingReg(C_ECC_ONOFF) and Sl_Wait_i and not(full_word_write_access);
-
     -----------------------------------------------------------------------------
     -- Writes are pipelined in MB with 5 stage pipeline
     -----------------------------------------------------------------------------
@@ -3668,9 +3718,33 @@ begin
 
     Sl_Ready_i <= Sl_Rdy;
 
+    Sl_Ready_ECC_LMB_Protocol_0 : if (C_LMB_PROTOCOL = 0) generate
+    begin
+      -- ECC checking enable during access and when checking is turned on
+      enable_ecc <= ECC_EnableCheckingReg(C_ECC_ONOFF) and Sl_Wait_i and not(full_word_write_access);
+      Sl_Ready_ECC <= Sl_Ready_i;
+    end generate Sl_Ready_ECC_LMB_Protocol_0;
+
+    Sl_Ready_ECC_LMB_Protocol_1 : if (C_LMB_PROTOCOL = 1) generate
+    begin
+      Sl_Ready_ECC_p : process(LMB_Clk) is
+      begin
+        if LMB_Clk'event and LMB_Clk = '1' then
+          if LMB_Rst = '1' then
+            enable_ecc   <= '0';
+            Sl_Ready_ECC <= '0';
+          else
+            -- ECC checking enable during access and when checking is turned on
+            enable_ecc   <= ECC_EnableCheckingReg(C_ECC_ONOFF) and Sl_Wait_i and not(full_word_write_access);
+            Sl_Ready_ECC <= Sl_Ready_i;
+          end if;
+        end if;
+      end process Sl_Ready_ECC_p;
+    end generate Sl_Ready_ECC_LMB_Protocol_1;
+    
     Wait_Handling: process (LMB_Clk) is
     begin  -- process Wait_Handling
-      if (LMB_Clk'event and LMB_Clk = '1') then  -- rising clock edge
+      if (LMB_Clk'event and LMB_Clk = '1') then
         if (LMB_Rst = '1') then
           Sl_Wait_i <= '0';
         elsif (LMB_AddrStrobe_i = '1') then
@@ -3698,8 +3772,8 @@ begin
         CE         => Sl_CE_i);                -- [out std_logic]
 
     -- Discrete error signals
-    UE <= Sl_UE_i and Sl_Ready_i;
-    CE <= Sl_CE_i and Sl_Ready_i;
+    UE <= Sl_UE_i and Sl_Ready_ECC;
+    CE <= Sl_CE_i and Sl_Ready_ECC;
 
     -- Correct Data
     Gen_Correct_Data: for I in 0 to 31 generate
@@ -3765,23 +3839,66 @@ begin
           end if;
         end process CorrReg;
 
-        -- Remember byte write enables one clock cycle to properly mux bytes to write,
-        -- with read data in read/modify write operation
-        -- Write in Read/Write always 1 cycle after Read
-        StoreLMB_WE : process(LMB_Clk) is
+        RdModifyWr_LMB_Protocol_0 : if (C_LMB_PROTOCOL = 0) generate
+          signal RdModifyWr_Modify_i    : std_logic;  -- Modify cycle in read modify write sequence
         begin
-          if (LMB_Clk'event and LMB_Clk = '1') then
-            RdModifyWr_Modify_i <= RdModifyWr_Read;
-            RdModifyWr_Write    <= RdModifyWr_Modify;
-            CorrectedRdData_Q   <= CorrectedRdData;
-          end if;
-        end process StoreLMB_WE;
 
-        RdModifyWr_Modify <= RdModifyWr_Modify_i and lmb_as;
+          -- Remember byte write enables one clock cycle to properly mux bytes to write,
+          -- with read data in read/modify write operation
+          -- Write in Read/Write always 1 cycle after Read
+          StoreLMB_WE : process(LMB_Clk) is
+          begin
+            if (LMB_Clk'event and LMB_Clk = '1') then
+              if (LMB_Rst = '1') then
+                 RdModifyWr_Modify_i  <= '0';
+                 RdModifyWr_Write     <= '0';
+                 CorrectedRdData_Q    <= (others => '0');
+               else
+                 RdModifyWr_Modify_i <= RdModifyWr_Read;
+                 RdModifyWr_Write    <= RdModifyWr_Modify;
+                 CorrectedRdData_Q   <= CorrectedRdData;
+              end if;
+            end if;
+          end process StoreLMB_WE;
 
-        RdModifyWr_Read  <= '1' when lmb_we /= "1111" and lmb_we /= "0000" and (C_WRITE_ACCESS = ALL_WRITES) else
-                            '0';
+          RdModifyWr_Modify <= RdModifyWr_Modify_i and lmb_as;
 
+          RdModifyWr_Read  <= '1' when lmb_we /= "1111" and lmb_we /= "0000" and (C_WRITE_ACCESS = ALL_WRITES) else
+                              '0';
+
+        end generate RdModifyWr_LMB_Protocol_0;
+
+
+        RdModifyWr_LMB_Protocol_1 : if (C_LMB_PROTOCOL = 1) generate
+         signal RdModifyWr_Read_Q    : std_logic;  -- Read cycle in read modify write sequence gated by lmb_as
+         signal RdModifyWr_Read_Q_i  : std_logic;  -- Read cycle in read modify write sequence
+        begin
+        
+          StoreLMB_WE : process(LMB_Clk) is
+          begin
+            if (LMB_Clk'event and LMB_Clk = '1') then
+              if (LMB_Rst = '1') then
+                 RdModifyWr_Read_Q_i <= '0';
+                 RdModifyWr_Modify   <= '0';
+                 RdModifyWr_Write    <= '0';
+                 CorrectedRdData_Q   <= (others => '0');
+               else
+                 RdModifyWr_Read_Q_i <= RdModifyWr_Read;
+                 RdModifyWr_Modify   <= RdModifyWr_Read_Q;
+                 RdModifyWr_Write    <= RdModifyWr_Modify;
+                 CorrectedRdData_Q   <= CorrectedRdData;
+              end if;
+            end if;
+          end process StoreLMB_WE;
+
+          RdModifyWr_Read_Q <= RdModifyWr_Read_Q_i and lmb_as;
+
+          RdModifyWr_Read  <= '1' when lmb_we /= "1111" and lmb_we /= "0000" and (C_WRITE_ACCESS = ALL_WRITES) else
+                              '0';
+
+        end generate RdModifyWr_LMB_Protocol_1;
+
+        
         -- Remember write data one cycle to be available after read has been completed in a
         -- read/modify write operation
         StoreWriteDBus : process(LMB_Clk) is
@@ -3983,7 +4100,25 @@ begin
 
     begin
 
-      sample_registers <= lmb_as and not full_word_write_access;
+      sample_registers_LMB_Protocol_0 : if (C_LMB_PROTOCOL = 0) generate
+      begin
+        sample_registers <= lmb_as and not full_word_write_access;
+      end generate sample_registers_LMB_Protocol_0;
+
+      sample_registers_LMB_Protocol_1 : if (C_LMB_PROTOCOL = 1) generate
+      begin
+        -- BRAM read data clocked UE, CE also one cycle later
+        sample_registers_dff : process(LMB_Clk) is
+        begin
+          if LMB_Clk'event and LMB_Clk = '1' then
+            if LMB_Rst = '1' then
+              sample_registers <= '0';
+            else
+              sample_registers <= lmb_as and not full_word_write_access;
+            end if;
+          end if;
+        end process sample_registers_dff;
+      end generate sample_registers_LMB_Protocol_1;
 
       -- Implement fault injection registers
       Fault_Inject : if C_HAS_FAULT_INJECT and (C_WRITE_ACCESS /= NO_WRITES) generate

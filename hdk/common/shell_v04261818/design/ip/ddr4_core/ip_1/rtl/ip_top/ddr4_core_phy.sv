@@ -58,7 +58,7 @@
 // \   \   \/     Version            : 2.1
 //  \   \         Application        : MIG
 //  /   /         Filename           : ddr4_core_phy.sv
-// /___/   /\     Date Last Modified : $Date: 2017/09/06 $
+// /___/   /\     Date Last Modified : $Date: 2020/04/06 $
 // \   \  /  \    Date Created       : Thu Apr 18 2013
 //  \___\/\___\
 //
@@ -77,7 +77,7 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 (* PROBE_PROHIBIT="TRUE" *)
 
-module ddr4_core_phy (
+(* dont_touch = "true" *) module ddr4_core_phy (
   input                                           sys_clk_p,
   input                                           sys_clk_n,
   input                                           mmcm_lock,

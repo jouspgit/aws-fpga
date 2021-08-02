@@ -1,4 +1,4 @@
-//Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+//Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Command: generate_target bd_bf3f_wrapper.bd
 //Design : bd_bf3f_wrapper

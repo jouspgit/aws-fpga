@@ -18,6 +18,19 @@ variable script_folder
 set script_folder [_tcl::get_script_folder]
 
 ################################################################
+# Check if script is running in correct Vivado version.
+################################################################
+set scripts_vivado_version 2020.1
+set current_vivado_version [version -short]
+
+if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
+   puts ""
+   catch {common::send_gid_msg -ssname BD::TCL -id 2041 -severity "ERROR" "This script was generated using Vivado <$scripts_vivado_version> and is being run in <$current_vivado_version> of Vivado. Please run the script in Vivado <$scripts_vivado_version> then open the design in Vivado <$current_vivado_version>. Upgrade the design by running \"Tools => Report => Report IP Status...\", then run write_bd_tcl to create an updated script."}
+
+   return 1
+}
+
+################################################################
 # START
 ################################################################
 
@@ -45,7 +58,7 @@ set run_remote_bd_flow 1
 if { $run_remote_bd_flow == 1 } {
   # Set the reference directory for source file relative paths (by default 
   # the value is script directory path)
-  set origin_dir ./v4_venom_cl.srcs/sources_1/ip/ddr4_core/bd_0
+  set origin_dir ./bd_0
 
   # Use origin directory path location variable, if specified in the tcl shell
   if { [info exists ::origin_dir_loc] } {
@@ -57,9 +70,9 @@ if { $run_remote_bd_flow == 1 } {
 
   # Check if remote design exists on disk
   if { [file exists $str_bd_filepath ] == 1 } {
-     catch {common::send_msg_id "BD_TCL-110" "ERROR" "The remote BD file path <$str_bd_filepath> already exists!"}
-     common::send_msg_id "BD_TCL-008" "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0>."
-     common::send_msg_id "BD_TCL-009" "INFO" "Also make sure there is no design <$design_name> existing in your current project."
+     catch {common::send_gid_msg -ssname BD::TCL -id 2030 -severity "ERROR" "The remote BD file path <$str_bd_filepath> already exists!"}
+     common::send_gid_msg -ssname BD::TCL -id 2031 -severity "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0>."
+     common::send_gid_msg -ssname BD::TCL -id 2032 -severity "INFO" "Also make sure there is no design <$design_name> existing in your current project."
 
      return 1
   }
@@ -67,9 +80,9 @@ if { $run_remote_bd_flow == 1 } {
   # Check if design exists in memory
   set list_existing_designs [get_bd_designs -quiet $design_name]
   if { $list_existing_designs ne "" } {
-     catch {common::send_msg_id "BD_TCL-111" "ERROR" "The design <$design_name> already exists in this project! Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2033 -severity "ERROR" "The design <$design_name> already exists in this project! Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
 
-     common::send_msg_id "BD_TCL-010" "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
+     common::send_gid_msg -ssname BD::TCL -id 2034 -severity "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
 
      return 1
   }
@@ -77,11 +90,11 @@ if { $run_remote_bd_flow == 1 } {
   # Check if design exists on disk within project
   set list_existing_designs [get_files -quiet */${design_name}.bd]
   if { $list_existing_designs ne "" } {
-     catch {common::send_msg_id "BD_TCL-112" "ERROR" "The design <$design_name> already exists in this project at location:
+     catch {common::send_gid_msg -ssname BD::TCL -id 2035 -severity "ERROR" "The design <$design_name> already exists in this project at location:
     $list_existing_designs"}
-     catch {common::send_msg_id "BD_TCL-113" "ERROR" "Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2036 -severity "ERROR" "Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
 
-     common::send_msg_id "BD_TCL-011" "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
+     common::send_gid_msg -ssname BD::TCL -id 2037 -severity "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
 
      return 1
   }
@@ -93,7 +106,7 @@ if { $run_remote_bd_flow == 1 } {
 
   # Create regular design
   if { [catch {create_bd_design -bdsource SBD $design_name} errmsg] } {
-     common::send_msg_id "BD_TCL-012" "INFO" "Please set a different value to variable <design_name>."
+     common::send_gid_msg -ssname BD::TCL -id 2038 -severity "INFO" "Please set a different value to variable <design_name>."
 
      return 1
   }
@@ -121,14 +134,14 @@ proc create_root_design { parentCell } {
   # Get object for parentCell
   set parentObj [get_bd_cells $parentCell]
   if { $parentObj == "" } {
-     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2090 -severity "ERROR" "Unable to find parent cell <$parentCell>!"}
      return
   }
 
   # Make sure parentObj is hier blk
   set parentType [get_property TYPE $parentObj]
   if { $parentType ne "hier" } {
-     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2091 -severity "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
      return
   }
 
@@ -141,13 +154,14 @@ proc create_root_design { parentCell } {
 
   # Create interface ports
   set IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:mcsio_bus_rtl:1.0 IO ]
+
   set TRACE [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:mbtrace_rtl:2.0 TRACE ]
 
+
   # Create ports
-  set Clk [ create_bd_port -dir I -type clk Clk ]
+  set Clk [ create_bd_port -dir I -type clk -freq_hz 100000000 Clk ]
   set_property -dict [ list \
    CONFIG.ASSOCIATED_ASYNC_RESET {Reset} \
-   CONFIG.FREQ_HZ {100000000} \
  ] $Clk
   set Reset [ create_bd_port -dir I -type rst Reset ]
   set_property -dict [ list \
@@ -155,31 +169,31 @@ proc create_root_design { parentCell } {
  ] $Reset
 
   # Create instance: dlmb, and set properties
-  set dlmb [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_v10 dlmb ]
+  set dlmb [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_v10:3.0 dlmb ]
   set_property -dict [ list \
    CONFIG.C_LMB_NUM_SLAVES {3} \
  ] $dlmb
 
   # Create instance: dlmb_cntlr, and set properties
-  set dlmb_cntlr [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_bram_if_cntlr dlmb_cntlr ]
+  set dlmb_cntlr [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_bram_if_cntlr:4.0 dlmb_cntlr ]
   set_property -dict [ list \
    CONFIG.C_MASK {0x00000000C0010000} \
  ] $dlmb_cntlr
 
   # Create instance: ilmb, and set properties
-  set ilmb [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_v10 ilmb ]
+  set ilmb [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_v10:3.0 ilmb ]
   set_property -dict [ list \
    CONFIG.C_LMB_NUM_SLAVES {2} \
  ] $ilmb
 
   # Create instance: ilmb_cntlr, and set properties
-  set ilmb_cntlr [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_bram_if_cntlr ilmb_cntlr ]
+  set ilmb_cntlr [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_bram_if_cntlr:4.0 ilmb_cntlr ]
   set_property -dict [ list \
    CONFIG.C_MASK {0x0000000080010000} \
  ] $ilmb_cntlr
 
   # Create instance: iomodule_0, and set properties
-  set iomodule_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:iomodule iomodule_0 ]
+  set iomodule_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:iomodule:3.1 iomodule_0 ]
   set_property -dict [ list \
    CONFIG.C_INSTANCE {iomodule} \
    CONFIG.C_INTC_ADDR_WIDTH {17} \
@@ -191,13 +205,13 @@ proc create_root_design { parentCell } {
  ] $iomodule_0
 
   # Create instance: lmb_bram_I, and set properties
-  set lmb_bram_I [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen lmb_bram_I ]
+  set lmb_bram_I [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 lmb_bram_I ]
   set_property -dict [ list \
    CONFIG.Memory_Type {True_Dual_Port_RAM} \
  ] $lmb_bram_I
 
   # Create instance: microblaze_I, and set properties
-  set microblaze_I [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze microblaze_I ]
+  set microblaze_I [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:11.0 microblaze_I ]
   set_property -dict [ list \
    CONFIG.C_ASYNC_WAKEUP {3} \
    CONFIG.C_DEBUG_ENABLED {0} \
@@ -216,22 +230,22 @@ proc create_root_design { parentCell } {
  ] $microblaze_I
 
   # Create instance: rst_0, and set properties
-  set rst_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset rst_0 ]
+  set rst_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_0 ]
 
   # Create instance: second_dlmb_cntlr, and set properties
-  set second_dlmb_cntlr [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_bram_if_cntlr second_dlmb_cntlr ]
+  set second_dlmb_cntlr [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_bram_if_cntlr:4.0 second_dlmb_cntlr ]
   set_property -dict [ list \
    CONFIG.C_MASK {0x00000000C0010000} \
  ] $second_dlmb_cntlr
 
   # Create instance: second_ilmb_cntlr, and set properties
-  set second_ilmb_cntlr [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_bram_if_cntlr second_ilmb_cntlr ]
+  set second_ilmb_cntlr [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_bram_if_cntlr:4.0 second_ilmb_cntlr ]
   set_property -dict [ list \
    CONFIG.C_MASK {0x0000000080010000} \
  ] $second_ilmb_cntlr
 
   # Create instance: second_lmb_bram_I, and set properties
-  set second_lmb_bram_I [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen second_lmb_bram_I ]
+  set second_lmb_bram_I [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 second_lmb_bram_I ]
   set_property -dict [ list \
    CONFIG.Memory_Type {True_Dual_Port_RAM} \
  ] $second_lmb_bram_I
@@ -259,17 +273,18 @@ proc create_root_design { parentCell } {
   connect_bd_net -net Reset [get_bd_ports Reset] [get_bd_pins rst_0/ext_reset_in]
 
   # Create address segments
-  create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces microblaze_I/Data] [get_bd_addr_segs dlmb_cntlr/SLMB/Mem] SEG_dlmb_cntlr_Mem
-  create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces microblaze_I/Instruction] [get_bd_addr_segs ilmb_cntlr/SLMB/Mem] SEG_ilmb_cntlr_Mem
-  create_bd_addr_seg -range 0x40000000 -offset 0xC0000000 [get_bd_addr_spaces microblaze_I/Data] [get_bd_addr_segs iomodule_0/SLMB/IO] SEG_iomodule_0_IO
-  create_bd_addr_seg -range 0x00010000 -offset 0x80000000 [get_bd_addr_spaces microblaze_I/Data] [get_bd_addr_segs iomodule_0/SLMB/Reg] SEG_iomodule_0_Reg
-  create_bd_addr_seg -range 0x00008000 -offset 0x00010000 [get_bd_addr_spaces microblaze_I/Data] [get_bd_addr_segs second_dlmb_cntlr/SLMB/Mem] SEG_second_dlmb_cntlr_Mem
-  create_bd_addr_seg -range 0x00008000 -offset 0x00010000 [get_bd_addr_spaces microblaze_I/Instruction] [get_bd_addr_segs second_ilmb_cntlr/SLMB/Mem] SEG_second_ilmb_cntlr_Mem
+  assign_bd_address -offset 0x00000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces microblaze_I/Data] [get_bd_addr_segs dlmb_cntlr/SLMB/Mem] -force
+  assign_bd_address -offset 0x00000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces microblaze_I/Instruction] [get_bd_addr_segs ilmb_cntlr/SLMB/Mem] -force
+  assign_bd_address -offset 0xC0000000 -range 0x40000000 -target_address_space [get_bd_addr_spaces microblaze_I/Data] [get_bd_addr_segs iomodule_0/SLMB/IO] -force
+  assign_bd_address -offset 0x80000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces microblaze_I/Data] [get_bd_addr_segs iomodule_0/SLMB/Reg] -force
+  assign_bd_address -offset 0x00010000 -range 0x00008000 -target_address_space [get_bd_addr_spaces microblaze_I/Data] [get_bd_addr_segs second_dlmb_cntlr/SLMB/Mem] -force
+  assign_bd_address -offset 0x00010000 -range 0x00008000 -target_address_space [get_bd_addr_spaces microblaze_I/Instruction] [get_bd_addr_segs second_ilmb_cntlr/SLMB/Mem] -force
 
 
   # Restore current instance
   current_bd_instance $oldCurInst
 
+  validate_bd_design
   save_bd_design
 }
 # End of create_root_design()

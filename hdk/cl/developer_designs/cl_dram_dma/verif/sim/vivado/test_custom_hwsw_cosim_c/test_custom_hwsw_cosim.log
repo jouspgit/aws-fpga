@@ -2,8 +2,8 @@
 # xsim v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Sat Jul 31 16:08:49 2021
-# Process ID: 29845
+# Start of session at: Mon Aug  2 07:45:35 2021
+# Process ID: 4385
 # Current directory: /home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/verif/sim/vivado/test_custom_hwsw_cosim_c
 # Command line: xsim -log test_custom_hwsw_cosim.log -mode tcl -source {xsim.dir/tb/xsim_script.tcl}
 # Log file: /home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/verif/sim/vivado/test_custom_hwsw_cosim_c/test_custom_hwsw_cosim.log
@@ -1187,17 +1187,17 @@ Done DDR init...
 filling buffer with  custom data...
 Values inside the write buffer are : 
 
-3012464f60906b179ed63be2ac15519c4484b9e5759f23852b4a7d7984adf34b9ea591d920e2e4c4277b5881c552f8737c57fdd13f84e434068ff78b127
-cd9936a48e1c72e1c16acc41dfa5fe4491c904d29acc4da418360c8e3523b0624a254456c5c3aff9b4e58be3b5632366540c862af568c2dcb33adc35f7
-99d553979815159fe3d0187f1227e8144a51eb9934a022286ffaffe3f51de24a46d376b657729fcf514b3f51b11bb59379732be1ae9e7f9c6a9d44cd55dbbfb
-e88f3ac631fc7236eb136f1118e9501c57ca4b3dcb4171b497c44e3491a2f9f17e4c77b377e2c59d3e5b72931cc536ccdfe9ef3aea2b32f7b9e3055b1f8432
+104b8899c9f12de0d73f5297d1c2302abdb5218f254b1cd33c5bc8c6344114b4abc11a5fc96d7d3144db309c9b5109b1dfd79fde2e33f1df36c6ce52532e3
+16351aaffa9275b27ad0bac1e4987ab81baf3474404fd6cff3b96198c32251a4a5e67cbedb13bdb3ef3547a7023835bbe614f66db09a24465079a086c08f44
+57a43c56c4bb3cf62c0574d5fdd2b6bb4de6e67692ebbb423d86818c23b812c378eedf8d328744b3d6d3fe3b453ec6a3cf1be1cb578cd715a853127ca
+50e87c3b8e88147c76f5bdfea09ea6a9314720873928e4fceaa56b18ca1518dd8e41339bbf88c2ce68619955e8ced2b9ae2a6bba813e96924398ded09735ce
 Now performing the DMA transactions...
 Values inside the write buffer readback are : 
 
-012464f60906b179ed63be2ac15519c4484b9e5759f23852b4a7d7984adf34b9ea591d920e2e4c4277b5881c552f8737c57fdd13f84e434068ff78b127
-cd9936a48e1c72e1c16acc41dfa5fe4491c904d29acc4da418360c8e3523b0624a254456c5c3aff9b4e58be3b5632366540c862af568c2dcb33adc35f7
-99d553979815159fe3d0187f1227e8144a51eb9934a022286ffaffe3f51de24a46d376b657729fcf514b3f51b11bb59379732be1ae9e7f9c6a9d44cd55dbbfb
-e88f3ac631fc7236eb136f1118e9501c57ca4b3dcb4171b497c44e3491a2f9f17e4c77b377e2c59d3e5b72931cc536ccdfe9ef3aea2b32f7b9e3055b1f8432
+04b8899c9f12de0d73f5297d1c2302abdb5218f254b1cd33c5bc8c6344114b4abc11a5fc96d7d3144db309c9b5109b1dfd79fde2e33f1df36c6ce52532e3
+16351aaffa9275b27ad0bac1e4987ab81baf3474404fd6cff3b96198c32251a4a5e67cbedb13bdb3ef3547a7023835bbe614f66db09a24465079a086c08f44
+57a43c56c4bb3cf62c0574d5fdd2b6bb4de6e67692ebbb423d86818c23b812c378eedf8d328744b3d6d3fe3b453ec6a3cf1be1cb578cd715a853127ca
+50e87c3b8e88147c76f5bdfea09ea6a9314720873928e4fceaa56b18ca1518dd8e41339bbf88c2ce68619955e8ced2b9ae2a6bba813e96924398ded09735ce
 DIMM 0 passed!
 
 
@@ -1209,13 +1209,13 @@ Memory has been allocated.
 Now performing the DMA readbacks...
 Values inside the data readback buffer are : 
 
-10604f46129e176b90ace23bd6c495115e5b94488239f75d7a7b452f3ad49891a59e4be4e220d9b5772c42f551c887fc537874ef813ddff684043cd27b1
-788ea43699c1e1721c1dc4ac649e45ffa294d901c41dac4ace3c8608362b0235455424aafc3c5658eb4f932563bbec84065368c56af62a33cb2d99f735
-dc989753d5e39f1515127f18d04a14e8273499eb516f2822a0f5e3fffa464ae21d57b676d351cf9f721bf5b343759bb111abe3297c6f9e7e9d54cd4a9e8fbbb
-5d31c63a8feb3672fc18116f13571c50e9cb3d4bca97b4714191344ec47ef1f9a277b3774c3e9dc5e21c93725bdfcc36c5aef39ee7b2fb3a2b155309eaa3284
+10c999884bd7e02df1d197523fbd2a30c2258f21b53cd31c4b638cbc5b4411445f1ac1ab317d6dc99c30db449b1059bfd79fd1d1d3fe3e2e56c6cf316e332
+25faaf1a357ab27592e4c1bad01bb87a98407434aff3cfd64f8c196b94a1a2532edcb675e3edb3bb1707a54f3bb583236df614e646249ab086a079505448f
+c06cc5437a62cfb34b5f4d57c0b46b2bdd69676ede42bbb2e8c81863d2c813b2f8ed8e37448732d3fdd6b3e53b4e31bcfa3c678b5ce1855a71cd50ca27
+318e3b7ce8767c1488a0febdf531a9a69e39872047eafce428ca186ba58edd1815bf9b334168cec2885e959619a2bed8ca8bba6e22469e913d0de8397cce35
 TEST PASSED 
 
 $finish called at time : 45322 ns : File "/home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/verif/tests/test_null.sv" Line 29
-run: Time (s): cpu = 00:00:00.94 ; elapsed = 00:08:54 . Memory (MB): peak = 2444.789 ; gain = 0.000 ; free physical = 21621 ; free virtual = 47063
+run: Time (s): cpu = 00:00:00.80 ; elapsed = 00:05:20 . Memory (MB): peak = 2300.969 ; gain = 0.000 ; free physical = 24841 ; free virtual = 47458
 ## quit
-INFO: [Common 17-206] Exiting xsim at Sat Jul 31 16:17:52 2021...
+INFO: [Common 17-206] Exiting xsim at Mon Aug  2 07:51:03 2021...

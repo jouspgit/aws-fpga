@@ -128,6 +128,7 @@ read_xdc [ list \
 set_property USED_IN {synthesis implementation OUT_OF_CONTEXT} [get_files cl_clocks_aws.xdc]
 set_property PROCESSING_ORDER EARLY  [get_files cl_clocks_aws.xdc]
 
+save_project_as p.xpr -force
 ########################
 # CL Synthesis
 ########################
