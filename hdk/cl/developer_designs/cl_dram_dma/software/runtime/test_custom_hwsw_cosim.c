@@ -142,11 +142,7 @@ int main(int argc, char **argv)
     #if defined(SV_TEST)
         sv_pause(3); // hors simu? usleep?
     #else 
-<<<<<<< HEAD
         //usleep(3); // Unneeded for now.
-=======
-        //usleep(3); // how little do I wait?
->>>>>>> 2910b3a5e7c4552fbda2dd4c7f96438919602202
     #endif
 
     rc = dma_readback(slot_id, buffer_size); //  readback the modified data.
@@ -184,7 +180,6 @@ out:
 
 void usage(const char* program_name) {
     printf("usage: %s [--slot <slot>]\n", program_name);
-<<<<<<< HEAD
 }
 
 int dma_example_hwsw_cosim(int slot_id, size_t buffer_size)
@@ -272,102 +267,8 @@ out:
     return (rc != 0 ? 1 : 0);
 }
 
-=======
-}
-
-int dma_example_hwsw_cosim(int slot_id, size_t buffer_size)
-{
-    int write_fd, read_fd, dimm, rc;
-
-    write_fd = -1;
-    read_fd = -1;
-
-    uint8_t *write_buffer = malloc(buffer_size);
-    uint8_t *read_buffer = malloc(buffer_size);
-    if (write_buffer == NULL || read_buffer == NULL) {
-        rc = -ENOMEM;
-        goto out;
-    }
-
-    printf("Memory has been allocated, initializing DMA and filling the buffer of size : %zu\n", buffer_size);
-#if !defined(SV_TEST)
-    read_fd = fpga_dma_open_queue(FPGA_DMA_XDMA, slot_id,
-        /*channel*/ 0, /*is_read*/ true);
-    fail_on((rc = (read_fd < 0) ? -1 : 0), out, "unable to open read dma queue");
-
-    write_fd = fpga_dma_open_queue(FPGA_DMA_XDMA, slot_id,
-        /*channel*/ 0, /*is_read*/ false);
-    fail_on((rc = (write_fd < 0) ? -1 : 0), out, "unable to open write dma queue");
-#else
-    setup_send_rdbuf_to_c(read_buffer, buffer_size);
-    printf("Starting DDR init...\n");
-    init_ddr();
-    //deselect_atg_hw();
-    printf("Done DDR init...\n");
-#endif
-    printf("filling buffer with custom data...\n") ;
-
-    //fill_buffer_custom(write_buffer, buffer_size);
-    rc = fill_buffer_urandom(write_buffer, buffer_size);
-    fail_on(rc, out, "unable to initialize buffer");
-
-    printf("Values inside the write buffer are : \n\n");
-    print_buffer(write_buffer, buffer_size);
-
-
-    printf("Now performing the DMA transactions...\n");
-    for (dimm = 0; dimm < N_DDR; dimm++) {
-        rc = do_dma_write(write_fd, write_buffer, buffer_size,
-            dimm * MEM_16G+0x200000000, dimm, slot_id);
-        fail_on(rc, out, "DMA write failed on DIMM: %d", dimm);
-    }
-
-    bool passed = true;
-    for (dimm = 0; dimm < N_DDR; dimm++) {
-        rc = do_dma_read(read_fd, read_buffer, buffer_size,
-            dimm * MEM_16G+0x200000000, dimm, slot_id);
-        fail_on(rc, out, "DMA read failed on DIMM: %d", dimm);
-
-        printf("Values inside the write buffer readback are : \n\n");
-        print_buffer(read_buffer, buffer_size);
-
-        uint64_t differ = buffer_compare(read_buffer, write_buffer, buffer_size);
-        if (differ != 0) {
-            log_error("DIMM %d failed with %lu bytes which differ", dimm, differ);
-            passed = false;
-        } else {
-            log_info("DIMM %d passed!", dimm);
-        }
-    }
-    rc = (passed) ? 0 : 1;
-
-out:
-    if (write_buffer != NULL) {
-        free(write_buffer);
-    }
-    if (read_buffer != NULL) {
-        free(read_buffer);
-    }
-#if !defined(SV_TEST)
-    if (write_fd >= 0) {
-        close(write_fd);
-    }
-    if (read_fd >= 0) {
-        close(read_fd);
-    }
-#endif
-    /* if there is an error code, exit with status 1 */
-    return (rc != 0 ? 1 : 0);
-}
-
->>>>>>> 2910b3a5e7c4552fbda2dd4c7f96438919602202
 int custom_hwsw_cosim(int slot_id)
 {
-
-  //int timeout;
-  //uint32_t find_ok = 0;
-  //uint32_t find_ko = 0;
-  //uint32_t busy = 0;
   int rc;
 
   int pf_id = FPGA_APP_PF;
@@ -388,13 +289,8 @@ int custom_hwsw_cosim(int slot_id)
   // Here starts the code that configures the axi mstr DMA for a transfer.
 
   printf("\nConfiguring DMA for MM2S DMA operation.\n");
-<<<<<<< HEAD
 
 
-=======
-
-
->>>>>>> 2910b3a5e7c4552fbda2dd4c7f96438919602202
   uint64_t offset = MM2S_DMACR;
   uint32_t value = 0x1; // Set RS bit to 1 (run/stop), no interrupts generation
 
@@ -448,6 +344,11 @@ int custom_hwsw_cosim(int slot_id)
   //---------------------Wait and Check (unused for now)----------------------
   /*
   // Wait for the busy status to be cleared
+
+  //int timeout;
+  //uint32_t find_ok = 0;
+  //uint32_t find_ko = 0;
+  //uint32_t busy = 0;
   busy = 1;
   while(busy == 1) {
   if(timeout == 10) {
@@ -595,17 +496,11 @@ void print_buffer(uint8_t *buffer, size_t buffer_size){
    Can lead to segmentation errors if used in non SV_TEST environment
    because of size_t being unsigned. */
 
-        for (size_t i = buffer_size-1; i >= 0; i--){
+        for (int i = buffer_size-1; i >= 0; i--){
             if(i%64==0 && i!=0){
-<<<<<<< HEAD
                 printf("\n%02x",buffer[i]);
             }else{
                 printf("%02x",buffer[i]);
-=======
-                printf("\n%x",buffer[i]);
-            }else{
-                printf("%x",buffer[i]);
->>>>>>> 2910b3a5e7c4552fbda2dd4c7f96438919602202
             }
         }
         printf("\n");
@@ -615,21 +510,12 @@ void print_buffer(uint8_t *buffer, size_t buffer_size){
 
         for (size_t i = 0; i < buffer_size; ++i){
             if(i%64==0){
-<<<<<<< HEAD
                 printf("\n%02x",buffer[i]);
             }else{
                 printf("%02x",buffer[i]);
             }
         }
         printf("\n\n");
-=======
-                printf("\n%x",buffer[i]);
-            }else{
-                printf("%x",buffer[i]);
-            }
-        }
-        printf("\n");
->>>>>>> 2910b3a5e7c4552fbda2dd4c7f96438919602202
 #endif
 }
 
