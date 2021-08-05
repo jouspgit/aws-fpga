@@ -361,8 +361,8 @@ int dma_example_hwsw_cosim(int slot_id, size_t buffer_size)
     fail_on(rc, out, "unable to initialize buffer");
     
     printf("Values inside the write buffer are : \n\n");
-    for (int i = buffer_size; i > 0; i--){
-        if(i%64==0 && i!=buffer_size){
+    for (int i = buffer_size-1; i >= 0; i--){
+        if(i%64==0 && i!=0){
             printf("\n%x",write_buffer[i]);
         }else{
             printf("%x",write_buffer[i]);
@@ -385,8 +385,8 @@ int dma_example_hwsw_cosim(int slot_id, size_t buffer_size)
         fail_on(rc, out, "DMA read failed on DIMM: %d", dimm);
 
         printf("Values inside the write buffer readback are : \n\n");
-        for (int i = buffer_size; i > 0; i--){
-            if(i%64==0 && i!=buffer_size){
+        for (int i = buffer_size-1; i >= 0; i--){
+            if(i%64==0 && i!=0){
                 printf("\n%x",read_buffer[i]);
             }else{
                 printf("%x",read_buffer[i]);
@@ -434,7 +434,7 @@ int dma_readback(int slot_id, size_t buffer_size)
         goto out;
     }
 
-    printf("Memory has been allocated.\n");
+    printf("Memory has been allocated for readback.\n");
 #if !defined(SV_TEST)
     read_fd = fpga_dma_open_queue(FPGA_DMA_XDMA, slot_id,
         /*channel*/ 0, /*is_read*/ true);
@@ -452,8 +452,8 @@ int dma_readback(int slot_id, size_t buffer_size)
         fail_on(rc, out, "DMA read failed on DIMM: %d", dimm);
 
         printf("Values inside the data readback buffer are : \n\n");
-        for (int i = buffer_size; i > 0; i--){
-            if(i%64==0 && i!=buffer_size){
+        for (int i = buffer_size-1; i >= 0; i--){
+            if(i%64==0 && i!=0){
                 printf("\n%x",read_buffer[i]);
             }else{
                 printf("%x",read_buffer[i]);

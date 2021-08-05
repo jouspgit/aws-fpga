@@ -120,7 +120,7 @@ axi_crossbar_0 DMA_JPEG_CROSSBAR (
   .s_axi_bresp(sh_ocl_bus_q.bresp),      // output wire [1 : 0] s_axi_bresp
   .s_axi_bvalid(sh_ocl_bus_q.bvalid),    // output wire [0 : 0] s_axi_bvalid
   .s_axi_bready(sh_ocl_bus_q.bready),    // input wire [0 : 0] s_axi_bready
-  .s_axi_araddr(sh_ocl_bus_q.araddr),    // input wire [63 : 0] s_axi_araddr
+  .s_axi_araddr({32'b0,sh_ocl_bus_q.araddr[31:0]}),    // input wire [63 : 0] s_axi_araddr
   .s_axi_arprot(3'b10),                   // input wire [2 : 0] s_axi_arprot
   .s_axi_arvalid(sh_ocl_bus_q.arvalid),  // input wire [0 : 0] s_axi_arvalid
   .s_axi_arready(sh_ocl_bus_q.arready),  // output wire [0 : 0] s_axi_arready
@@ -191,6 +191,7 @@ assign m_axi_crossbar_rresp[3:2] = axi_mstr_jpeg_cfg_bus.rresp;
 assign m_axi_crossbar_rvalid[1] = axi_mstr_jpeg_cfg_bus.rvalid;
 assign axi_mstr_jpeg_cfg_bus.rready = m_axi_crossbar_rready[1];
 
+/* Don't need extra logic for multiple nets.
 
 //-------------------------------------------------
 // Slave state machine (accesses from PCIe on BAR0 for CL registers)
@@ -483,7 +484,7 @@ always_comb begin
     tst_slv_rdata[i] = 32'hdead_beef;
   end
 end
-
+*/
 
 endmodule
 

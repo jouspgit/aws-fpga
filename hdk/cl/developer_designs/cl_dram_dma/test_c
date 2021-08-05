@@ -3,5 +3,5 @@ cd verif/scripts
 make C_TEST=test_custom_hwsw_cosim
 cd ../..
 cd verif/sim/vivado/test_custom_hwsw_cosim_c
-#vivado -source open_waves.tcl &
+vivado -source open_waves.tcl &
 cd ../../../..

@@ -36,7 +36,7 @@
 --include ${HDK_SHELL_DESIGN_DIR}/ip/axi_register_slice/hdl
 --include ${HDK_SHELL_DESIGN_DIR}/ip/axi_register_slice_light/hdl
 --include ${CL_ROOT}/design/axi_crossbar_0
---include ${HDK_SHELL_DESIGN_DIR}/ip/cl_axi_interconnect/ipshared/7e3a/hdl
+--include ${HDK_SHELL_DESIGN_DIR}/ip/cl_axi_interconnect/ipshared/ec67/hdl
 --include ${HDK_SHELL_DESIGN_DIR}/sh_ddr/sim
 
 # add this to include more ip
@@ -54,8 +54,8 @@ ${HDK_SHELL_DESIGN_DIR}/ip/dest_register_slice/sim/dest_register_slice.v
 ${HDK_SHELL_DESIGN_DIR}/ip/src_register_slice/sim/src_register_slice.v
 ${HDK_SHELL_DESIGN_DIR}/ip/axi_register_slice/sim/axi_register_slice.v
 ${HDK_SHELL_DESIGN_DIR}/ip/axi_register_slice_light/sim/axi_register_slice_light.v
-${HDK_SHELL_DESIGN_DIR}/ip/cl_axi_interconnect/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v
-${HDK_SHELL_DESIGN_DIR}/ip/cl_axi_interconnect/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v
+${HDK_SHELL_DESIGN_DIR}/ip/cl_axi_interconnect/ipshared/47c9/hdl/axi_data_fifo_v2_1_vl_rfs.v
+${HDK_SHELL_DESIGN_DIR}/ip/cl_axi_interconnect/ipshared/b68e/hdl/axi_crossbar_v2_1_vl_rfs.v
 ${HDK_SHELL_DESIGN_DIR}/ip/cl_axi_interconnect/ip/cl_axi_interconnect_xbar_0/sim/cl_axi_interconnect_xbar_0.v
 ${HDK_SHELL_DESIGN_DIR}/ip/cl_axi_interconnect/ip/cl_axi_interconnect_s00_regslice_0/sim/cl_axi_interconnect_s00_regslice_0.v
 ${HDK_SHELL_DESIGN_DIR}/ip/cl_axi_interconnect/ip/cl_axi_interconnect_s01_regslice_0/sim/cl_axi_interconnect_s01_regslice_0.v

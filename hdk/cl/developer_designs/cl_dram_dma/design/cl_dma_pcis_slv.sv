@@ -326,7 +326,7 @@ lib_pipe #(.WIDTH(1), .STAGES(4)) SLR2_PIPE_RST_N (.clk(aclk), .rst_n(1'b1), .in
 
 
 
-        .S00_AXI_araddr({sh_cl_dma_pcis_q.araddr[63:37], 1'b0, sh_cl_dma_pcis_q.araddr[35:0]}),
+        .S00_AXI_araddr({sh_cl_dma_pcis_q.araddr[63:37], 1'b0, sh_cl_dma_pcis_q.araddr[35:0]}), // why this?
         .S00_AXI_arburst(2'b1),
         .S00_AXI_arcache(4'b11),
         .S00_AXI_arid(sh_cl_dma_pcis_q.arid[5:0]),
@@ -366,7 +366,8 @@ lib_pipe #(.WIDTH(1), .STAGES(4)) SLR2_PIPE_RST_N (.clk(aclk), .rst_n(1'b1), .in
         .S00_AXI_wstrb(sh_cl_dma_pcis_q.wstrb),
         .S00_AXI_wvalid(sh_cl_dma_pcis_q.wvalid),
 
-        .S01_AXI_araddr({cl_axi_mstr_bus.araddr[63:37], 1'b0, cl_axi_mstr_bus.araddr[35:0]}),
+        .S01_AXI_araddr({cl_axi_mstr_bus.araddr[63:37], 1'b0, cl_axi_mstr_bus.araddr[35:0]}), // retirer ca si nécessaire.
+        //.S01_AXI_araddr(cl_axi_mstr_bus.araddr),
         .S01_AXI_arburst(2'b1),
         .S01_AXI_arcache(4'b11),
         .S01_AXI_arid(cl_axi_mstr_bus.arid[5:0]),
@@ -379,6 +380,7 @@ lib_pipe #(.WIDTH(1), .STAGES(4)) SLR2_PIPE_RST_N (.clk(aclk), .rst_n(1'b1), .in
         .S01_AXI_arsize(cl_axi_mstr_bus.arsize),
         .S01_AXI_arvalid(cl_axi_mstr_bus.arvalid),
         .S01_AXI_awaddr({cl_axi_mstr_bus.awaddr[63:37], 1'b0, cl_axi_mstr_bus.awaddr[35:0]}),
+        //.S01_AXI_awaddr(cl_axi_mstr_bus.awaddr),
         .S01_AXI_awburst(2'b1),
         .S01_AXI_awcache(4'b11),
         .S01_AXI_awid(cl_axi_mstr_bus.awid[5:0]),

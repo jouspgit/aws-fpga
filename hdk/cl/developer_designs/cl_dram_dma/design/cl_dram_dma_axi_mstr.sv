@@ -446,7 +446,7 @@ module cl_dram_dma_axi_mstr (
   wire axi_mstr_dma_cfg_bus_rvalid;
   wire [511 : 0] axi_mstr_dma_cfg_bus_rdata;
   wire [1 : 0] axi_mstr_dma_cfg_bus_rresp;
-  wire cl_axi_mstr_bus_araddr;
+  wire [63 : 0] cl_axi_mstr_bus_araddr;
   wire [7 : 0] cl_axi_mstr_bus_arlen;
   wire [2 : 0] cl_axi_mstr_bus_arsize;
   wire cl_axi_mstr_bus_arvalid;

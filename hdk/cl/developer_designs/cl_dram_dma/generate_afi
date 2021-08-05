@@ -1,0 +1,17 @@
+#!/bin/bash
+aws s3 cp $CL_DIR/build/checkpoints/to_aws/*.Developer_CL.tar \
+             s3://jouspaulbucket2/bucket_dcp_folder/
+
+aws ec2 create-fpga-image \
+        --region eu-west-1 \
+        --name "cl_dram_dma_nest_jpegxs" \
+        --description "Hardware nest attempt for jpeg-xs compression core" \
+        --input-storage-location Bucket=jouspaulbucket2,Key=bucket_dcp_folder/21_08_04-172910.Developer_CL.tar \
+        --logs-storage-location Bucket=jouspaulbucket2,Key=bucket_log_folder
+
+
+#{
+#    "FpgaImageId": "afi-019d8ae766efd2764",
+#    "FpgaImageGlobalId": "agfi-0ca2bb5282d823cbf"
+#}
+aws ec2 describe-fpga-images --fpga-image-ids afi-019d8ae766efd2764
