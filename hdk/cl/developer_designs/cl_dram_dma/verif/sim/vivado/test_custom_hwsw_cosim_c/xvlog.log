@@ -1,5 +1,5 @@
-INFO: [XSIM 43-3496] Using init file passed via -initfile option "/opt/Xilinx/Vivado/2021.1/data/xsim/ip/xsim_ip.ini".
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/opt/Xilinx/Vivado/2021.1/data/verilog/src/glbl.v" into library xil_defaultlib
+INFO: [XSIM 43-3496] Using init file passed via -initfile option "/opt/Xilinx/Vivado/2020.1/data/xsim/ip/xsim_ip.ini".
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/opt/Xilinx/Vivado/2020.1/data/verilog/src/glbl.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module glbl
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/ip_1/rtl/phy/ddr4_phy_v2_2_xiphy_behav.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ddr4_phy_v2_2_0_xiphy_behav
@@ -159,8 +159,6 @@ INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk
 INFO: [VRFC 10-311] analyzing module ddr4_v2_2_9_cal_sync
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_core_ddr4_cal_riu.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ddr4_core_ddr4_cal_riu
-WARNING: [VRFC 10-8426] non-net output port 'io_addr_strobe_lvl_riuclk' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_core_ddr4_cal_riu.sv:115]
-WARNING: [VRFC 10-8426] non-net output port 'io_write_strobe_riuclk' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_core_ddr4_cal_riu.sv:118]
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_read.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ddr4_v2_2_9_cal_read
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_rd_en.sv" into library xil_defaultlib
@@ -179,24 +177,8 @@ INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk
 INFO: [VRFC 10-311] analyzing module ddr4_v2_2_9_cal_config_rom
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ddr4_v2_2_9_cal_addr_decode
-WARNING: [VRFC 10-8426] non-net output port 'io_ready_lvl' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:165]
-WARNING: [VRFC 10-8426] non-net output port 'ub_ready' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:166]
-WARNING: [VRFC 10-8426] non-net output port 'cal_DMOut_n' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:235]
-WARNING: [VRFC 10-8426] non-net output port 'casSlot' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:267]
-WARNING: [VRFC 10-8426] non-net output port 'rdCAS' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:269]
-WARNING: [VRFC 10-8426] non-net output port 'wrCAS' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:272]
-WARNING: [VRFC 10-8426] non-net output port 'lowCL0' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:276]
-WARNING: [VRFC 10-8426] non-net output port 'lowCL1' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:277]
-WARNING: [VRFC 10-8426] non-net output port 'lowCL2' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:278]
-WARNING: [VRFC 10-8426] non-net output port 'lowCL3' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:279]
-WARNING: [VRFC 10-8426] non-net output port 'uppCL0' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:280]
-WARNING: [VRFC 10-8426] non-net output port 'uppCL1' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:281]
-WARNING: [VRFC 10-8426] non-net output port 'uppCL2' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:282]
-WARNING: [VRFC 10-8426] non-net output port 'uppCL3' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:283]
-WARNING: [VRFC 10-8426] non-net output port 'win_status' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_addr_decode.sv:320]
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_top.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ddr4_v2_2_9_cal_top
-WARNING: [VRFC 10-8426] non-net output port 'cal_RESET_n' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_top.sv:322]
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal_xsdb_arbiter.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ddr4_v2_2_9_cal_xsdb_arbiter
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/cal/ddr4_v2_2_cal.sv" into library xil_defaultlib
@@ -212,9 +194,9 @@ INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk
 INFO: [VRFC 10-311] analyzing module ddr4_core_ddr4
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/ip_top/ddr4_core_ddr4_mem_intfc.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ddr4_core_ddr4_mem_intfc
-WARNING: [VRFC 10-8447] parameter 'lr_width' declared inside generate block shall be treated as localparam [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/ip_top/ddr4_v2_2_9_ddr4_assert.vh:942]
-WARNING: [VRFC 10-8447] parameter 'save_restore' declared inside generate block shall be treated as localparam [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/ip_top/ddr4_v2_2_9_ddr4_assert.vh:943]
-WARNING: [VRFC 10-8447] parameter 'self_refresh' declared inside generate block shall be treated as localparam [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/ip_top/ddr4_v2_2_9_ddr4_assert.vh:944]
+WARNING: [VRFC 10-2155] parameter declared inside generate block shall be treated as localparam [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/ip_top/ddr4_v2_2_9_ddr4_assert.vh:942]
+WARNING: [VRFC 10-2155] parameter declared inside generate block shall be treated as localparam [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/ip_top/ddr4_v2_2_9_ddr4_assert.vh:943]
+WARNING: [VRFC 10-2155] parameter declared inside generate block shall be treated as localparam [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/rtl/ip_top/ddr4_v2_2_9_ddr4_assert.vh:944]
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/ddr4_core/tb/microblaze_mcs_0.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ddr4_core_microblaze_mcs
 INFO: [VRFC 10-311] analyzing module microblaze_mcs
@@ -309,31 +291,7 @@ INFO: [VRFC 10-311] analyzing module s00_couplers_imp_QICM5G
 INFO: [VRFC 10-311] analyzing module s01_couplers_imp_GSTXQ8
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module axi_register_slice_v2_1_21_test_master
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awprot' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:73]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awsize' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:76]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awburst' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:77]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awcache' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:78]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awlock' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:80]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awqos' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:81]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awid' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:82]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awuser' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:83]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_wstrb' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:87]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_wuser' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:91]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arprot' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:100]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arsize' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:103]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arburst' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:104]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arcache' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:105]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arlock' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:107]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arqos' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:108]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arid' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:109]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_aruser' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:110]
 INFO: [VRFC 10-311] analyzing module axi_register_slice_v2_1_21_test_slave
-WARNING: [VRFC 10-8426] non-net output port 's_axi_bresp' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:610]
-WARNING: [VRFC 10-8426] non-net output port 's_axi_buser' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:613]
-WARNING: [VRFC 10-8426] non-net output port 's_axi_bid' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:614]
-WARNING: [VRFC 10-8426] non-net output port 's_axi_rresp' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:631]
-WARNING: [VRFC 10-8426] non-net output port 's_axi_ruser' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:635]
-WARNING: [VRFC 10-8426] non-net output port 's_axi_rid' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/dest_register_slice/hdl/axi_register_slice_v2_1_vl_rfs.v:636]
 INFO: [VRFC 10-311] analyzing module axi_register_slice_v2_1_21_tdm_sample
 INFO: [VRFC 10-311] analyzing module axi_register_slice_v2_1_21_auto_slr
 INFO: [VRFC 10-311] analyzing module axi_register_slice_v2_1_21_auto_src
@@ -382,32 +340,8 @@ INFO: [VRFC 10-311] analyzing module axi_crossbar_v2_1_22_axi_crossbar
 WARNING: [VRFC 10-3609] overwriting previous definition of module 'axi_crossbar_v2_1_22_axi_crossbar' [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_crossbar_v2_1_vl_rfs.v:4884]
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module axi_register_slice_v2_1_21_test_master
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awprot' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:73]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awsize' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:76]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awburst' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:77]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awcache' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:78]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awlock' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:80]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awqos' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:81]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awid' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:82]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_awuser' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:83]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_wstrb' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:87]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_wuser' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:91]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arprot' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:100]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arsize' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:103]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arburst' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:104]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arcache' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:105]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arlock' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:107]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arqos' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:108]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_arid' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:109]
-WARNING: [VRFC 10-8426] non-net output port 'm_axi_aruser' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:110]
 WARNING: [VRFC 10-3609] overwriting previous definition of module 'axi_register_slice_v2_1_21_test_master' [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:50]
 INFO: [VRFC 10-311] analyzing module axi_register_slice_v2_1_21_test_slave
-WARNING: [VRFC 10-8426] non-net output port 's_axi_bresp' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:610]
-WARNING: [VRFC 10-8426] non-net output port 's_axi_buser' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:613]
-WARNING: [VRFC 10-8426] non-net output port 's_axi_bid' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:614]
-WARNING: [VRFC 10-8426] non-net output port 's_axi_rresp' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:631]
-WARNING: [VRFC 10-8426] non-net output port 's_axi_ruser' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:635]
-WARNING: [VRFC 10-8426] non-net output port 's_axi_rid' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:636]
 WARNING: [VRFC 10-3609] overwriting previous definition of module 'axi_register_slice_v2_1_21_test_slave' [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:572]
 INFO: [VRFC 10-311] analyzing module axi_register_slice_v2_1_21_tdm_sample
 WARNING: [VRFC 10-3609] overwriting previous definition of module 'axi_register_slice_v2_1_21_tdm_sample' [/home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_crossbar_0/hdl/axi_register_slice_v2_1_vl_rfs.v:1031]
@@ -482,9 +416,6 @@ INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk
 INFO: [VRFC 10-311] analyzing module cl_tst_scrb
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/design/cl_tst.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module cl_tst
-WARNING: [VRFC 10-8426] non-net output port 'tst_cfg_rdata' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/design/cl_tst.sv:26]
-WARNING: [VRFC 10-8426] non-net output port 'wdata' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/design/cl_tst.sv:38]
-WARNING: [VRFC 10-8426] non-net output port 'wstrb' cannot be initialized at declaration in SystemVerilog mode [/home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/design/cl_tst.sv:39]
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/design/cl_int_tst.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module cl_int_tst
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/design/cl_dram_dma_pkg.sv" into library xil_defaultlib

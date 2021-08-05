@@ -497,8 +497,8 @@ void print_buffer(uint8_t *buffer, size_t buffer_size){
    because of size_t being unsigned. */
 
         for (int i = buffer_size-1; i >= 0; i--){
-            if(i%64==0 && i!=0){
-                printf("\n%02x",buffer[i]);
+            if(i%64==0){
+                printf("%02x\n",buffer[i]);
             }else{
                 printf("%02x",buffer[i]);
             }

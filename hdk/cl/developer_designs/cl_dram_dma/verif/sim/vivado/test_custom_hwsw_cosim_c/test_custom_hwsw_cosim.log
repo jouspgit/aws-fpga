@@ -2,8 +2,8 @@
 # xsim v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Wed Aug  4 16:54:14 2021
-# Process ID: 17870
+# Start of session at: Thu Aug  5 16:30:25 2021
+# Process ID: 18865
 # Current directory: /home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/verif/sim/vivado/test_custom_hwsw_cosim_c
 # Command line: xsim -log test_custom_hwsw_cosim.log -mode tcl -source {xsim.dir/tb/xsim_script.tcl}
 # Log file: /home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/verif/sim/vivado/test_custom_hwsw_cosim_c/test_custom_hwsw_cosim.log
@@ -1108,7 +1108,7 @@ Info: [Unisim HPIO_VREF-1] Fabric Tune Value changed to 0011101. Instance: tb.ca
 Info: [Unisim HPIO_VREF-1] Fabric Tune Value changed to 0011101. Instance: tb.card.fpga.CL.SH_DDR.\ddr_cores.genblk3.DDR4_2 .inst.u_ddr4_mem_intfc.u_mig_ddr4_phy.inst.u_ddr_iob.\genByte[9].u_ddr_iob_byte .\genblk1.genVref.u_hpio_vref 
 Info: [Unisim HPIO_VREF-1] Fabric Tune Value changed to 0011101. Instance: tb.card.fpga.CL.SH_DDR.\ddr_cores.genblk3.DDR4_2 .inst.u_ddr4_mem_intfc.u_mig_ddr4_phy.inst.u_ddr_iob.\genByte[10].u_ddr_iob_byte .\genblk1.genVref.u_hpio_vref 
 Info: [Unisim HPIO_VREF-1] Fabric Tune Value changed to 0011101. Instance: tb.card.fpga.CL.SH_DDR.\ddr_cores.genblk3.DDR4_2 .inst.u_ddr4_mem_intfc.u_mig_ddr4_phy.inst.u_ddr_iob.\genByte[11].u_ddr_iob_byte .\genblk1.genVref.u_hpio_vref 
-Memory has been allocated, initializing DMA and filling the buffer...
+Memory has been allocated, initializing DMA and filling the buffer of size : 256
 Starting DDR init...
 tb.card.u_ddr4_rdimm_C.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].even_ranks.u_ddr4_rank .\Micron_model.instance_of_sdram_devices[0].micron_mem_model.u_ddr4_model .always_diff_ck.if_diff_ck:Initialization complete @31007356
 tb.card.u_ddr4_rdimm_C.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].even_ranks.u_ddr4_rank .\Micron_model.instance_of_sdram_devices[1].micron_mem_model.u_ddr4_model .always_diff_ck.if_diff_ck:Initialization complete @31007356
@@ -1183,38 +1183,37 @@ tb.card.u_ddr4_rdimm_D.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].e
 tb.card.u_ddr4_rdimm_D.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].even_ranks.u_ddr4_rank .\Micron_model.instance_of_sdram_devices[16].micron_mem_model.u_ddr4_model .always_diff_ck.if_diff_ck:Initialization complete @32233532
 tb.card.u_ddr4_rdimm_D.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].even_ranks.u_ddr4_rank .\Micron_model.instance_of_sdram_devices[17].micron_mem_model.u_ddr4_model .always_diff_ck.if_diff_ck:Initialization complete @32233532
 Done DDR init...
-filling buffer with  custom data...
+filling buffer with custom data...
 Values inside the write buffer are : 
 
-a99d2e844954b2e31a3a568b7b99209bd189408c3be6d2e98bf255a47d71a926cabf34b1777e05daaace1f24dedc39fd38fcf7e1815d58508d2dfdd48d
-8cff43a71b95a8e2e0e28fe524ac5ab78ff78e8828bd257d31ef02b45baf1a3ca1e5eb9213f18878c08c3b5128eccc35454562c24d103ea740fec065115416
-c6cfc7f4a5948cda8b65c643d68d56e6ba1fe46f2fdc5e85c2d7a8862141674dfff6f45ac71da3a62e72544ffd83942d747bfac91511dbfc771d09732a9b0
-b92e44876cdf89842f6ea6ed73be5e44bcfe39789b956bf63426e6dadaf7250bda88cea620c18b10dc5790c25e0d138917e1be29f44f1bce1951cb1bbc46c36
+ad|94|24|94|6a|da|a6|26|2b|c0|a5|51|10|2e|7b|f0|e4|66|25|41|44|32|f1|9a|54|14|4d|7f|23|32|ad|9b|9a|73|37|00|56|55|02|da|e5|cd|d9|82|5d|28|75|fe|9d|c5|5c|9f|4b|53|bc|c6|6d|24|99|37|cd|c0|84|c2|
+36|bf|48|c8|b4|ac|dc|9d|01|53|68|50|96|68|61|73|96|13|b2|87|ba|b8|45|62|25|1f|bd|ad|68|a4|29|fe|61|8e|49|d1|14|5d|73|f9|62|ec|dc|e0|4c|36|12|14|ca|f9|68|31|d3|2b|f3|fd|08|98|b6|39|c6|7b|3e|f9|
+f8|cd|44|ea|73|8c|c2|ab|bb|67|5f|05|4f|ed|fe|6b|c4|1c|3f|37|71|11|96|d3|d5|eb|76|3d|f7|16|92|07|18|96|d3|95|a1|13|6e|b8|ed|32|d8|73|85|d9|78|38|5d|47|35|d1|35|6a|20|02|7c|90|77|92|9e|6c|31|03|
+9b|92|b8|22|04|ce|b8|bf|56|a2|84|f5|47|b8|0b|cc|54|58|09|40|9d|36|fa|cc|41|1f|42|d8|1d|5d|95|ae|2a|65|d7|e8|44|9e|db|43|29|88|1a|6f|98|04|df|b1|83|42|49|ea|e0|3b|8a|f8|9d|e5|f3|d9|ec|cf|72|2c|
+
 Now performing the DMA transactions...
 Values inside the write buffer readback are : 
 
-a99d2e844954b2e31a3a568b7b99209bd189408c3be6d2e98bf255a47d71a926cabf34b1777e05daaace1f24dedc39fd38fcf7e1815d58508d2dfdd48d
-8cff43a71b95a8e2e0e28fe524ac5ab78ff78e8828bd257d31ef02b45baf1a3ca1e5eb9213f18878c08c3b5128eccc35454562c24d103ea740fec065115416
-c6cfc7f4a5948cda8b65c643d68d56e6ba1fe46f2fdc5e85c2d7a8862141674dfff6f45ac71da3a62e72544ffd83942d747bfac91511dbfc771d09732a9b0
-b92e44876cdf89842f6ea6ed73be5e44bcfe39789b956bf63426e6dadaf7250bda88cea620c18b10dc5790c25e0d138917e1be29f44f1bce1951cb1bbc46c36
+ad|94|24|94|6a|da|a6|26|2b|c0|a5|51|10|2e|7b|f0|e4|66|25|41|44|32|f1|9a|54|14|4d|7f|23|32|ad|9b|9a|73|37|00|56|55|02|da|e5|cd|d9|82|5d|28|75|fe|9d|c5|5c|9f|4b|53|bc|c6|6d|24|99|37|cd|c0|84|c2|
+36|bf|48|c8|b4|ac|dc|9d|01|53|68|50|96|68|61|73|96|13|b2|87|ba|b8|45|62|25|1f|bd|ad|68|a4|29|fe|61|8e|49|d1|14|5d|73|f9|62|ec|dc|e0|4c|36|12|14|ca|f9|68|31|d3|2b|f3|fd|08|98|b6|39|c6|7b|3e|f9|
+f8|cd|44|ea|73|8c|c2|ab|bb|67|5f|05|4f|ed|fe|6b|c4|1c|3f|37|71|11|96|d3|d5|eb|76|3d|f7|16|92|07|18|96|d3|95|a1|13|6e|b8|ed|32|d8|73|85|d9|78|38|5d|47|35|d1|35|6a|20|02|7c|90|77|92|9e|6c|31|03|
+9b|92|b8|22|04|ce|b8|bf|56|a2|84|f5|47|b8|0b|cc|54|58|09|40|9d|36|fa|cc|41|1f|42|d8|1d|5d|95|ae|2a|65|d7|e8|44|9e|db|43|29|88|1a|6f|98|04|df|b1|83|42|49|ea|e0|3b|8a|f8|9d|e5|f3|d9|ec|cf|72|2c|
+
 DIMM 0 passed!
 
-
-
 Configuring DMA for MM2S DMA operation.
-
 Configuring DMA for S2MM DMA operation.
 Memory has been allocated for readback.
 Now performing the DMA readbacks...
 Values inside the data readback buffer are : 
 
-842e9da9e3b254498b563a1a9b20997b8c4089d12e6dbe35a25bf98921ad7474bf3ab6c5de077171fceaaac3ed4d2fc38fd95d81e1f72d8d50588c8dd4
-fd1ba743ffe0e2a89524e58fe278ab5ac82e878ffd357d28b452bf01ecaa3f1ba21b95e1e788813f513b8cc035ccec28c2624545a73e104d65c0fe40c61654
-11a5f4c7cf8bda8c94d643c665be6568df246fea15ce8c5fd86a872d4674121456fffdf3ada71ac4425e7624239d8ffacbf47d7bf1d519197d071c7b9b0a9
-326c87442e42889dfd76eeaf64be4e53b8997e3cf63bf56b9ad6d6e42bd5072afa6ce8a8108bc120c29057dc38d105ee21b7e91bcf1449fb11c95e1366cc4bb
-TEST PASSED 
+94|24|94|ad|26|a6|da|6a|51|a5|c0|2b|f0|7b|2e|10|41|25|66|e4|9a|f1|32|44|7f|4d|14|54|9b|ad|32|23|00|37|73|9a|da|02|55|56|82|d9|cd|e5|fe|75|28|5d|9f|5c|c5|9d|c6|bc|53|4b|37|99|24|6d|c2|84|c0|cd|
+c8|48|bf|36|9d|dc|ac|b4|50|68|53|01|73|61|68|96|87|b2|13|96|62|45|b8|ba|ad|bd|1f|25|fe|29|a4|68|d1|49|8e|61|f9|73|5d|14|e0|dc|ec|62|14|12|36|4c|31|68|f9|ca|fd|f3|2b|d3|39|b6|98|08|f9|3e|7b|c6|
+ea|44|cd|f8|ab|c2|8c|73|05|5f|67|bb|6b|fe|ed|4f|37|3f|1c|c4|d3|96|11|71|3d|76|eb|d5|07|92|16|f7|95|d3|96|18|b8|6e|13|a1|73|d8|32|ed|38|78|d9|85|d1|35|47|5d|02|20|6a|35|92|77|90|7c|03|31|6c|9e|
+22|b8|92|9b|bf|b8|ce|04|f5|84|a2|56|cc|0b|b8|47|40|09|58|54|cc|fa|36|9d|d8|42|1f|41|ae|95|5d|1d|e8|d7|65|2a|43|db|9e|44|6f|1a|88|29|b1|df|04|98|ea|49|42|83|f8|8a|3b|e0|d9|f3|e5|9d|2c|72|cf|ec|
 
+TEST PASSED 
 $finish called at time : 45322 ns : File "/home/centos/src/aws-fpga/hdk/cl/developer_designs/cl_dram_dma/verif/tests/test_null.sv" Line 29
-run: Time (s): cpu = 00:00:00.74 ; elapsed = 00:05:19 . Memory (MB): peak = 2444.789 ; gain = 0.000 ; free physical = 22751 ; free virtual = 45528
+run: Time (s): cpu = 00:00:00.86 ; elapsed = 00:07:53 . Memory (MB): peak = 2444.789 ; gain = 0.000 ; free physical = 21714 ; free virtual = 47086
 ## quit
-INFO: [Common 17-206] Exiting xsim at Wed Aug  4 16:59:41 2021...
+INFO: [Common 17-206] Exiting xsim at Thu Aug  5 16:38:27 2021...
