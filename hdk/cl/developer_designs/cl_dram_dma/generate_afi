@@ -4,14 +4,22 @@ aws s3 cp $CL_DIR/build/checkpoints/to_aws/*.Developer_CL.tar \
 
 aws ec2 create-fpga-image \
         --region eu-west-1 \
-        --name "cl_dram_dma_nest_jpegxs" \
-        --description "Hardware nest attempt for jpeg-xs compression core" \
+        --name "cl_dram_dma_nest_jpegxs_v2" \
+        --description "Hardware nest attempt for jpeg-xs compression core v2, bigger AXI DMA" \
         --input-storage-location Bucket=jouspaulbucket2,Key=bucket_dcp_folder/21_08_04-172910.Developer_CL.tar \
         --logs-storage-location Bucket=jouspaulbucket2,Key=bucket_log_folder
 
 
-#{
+#{      first working nest
 #    "FpgaImageId": "afi-019d8ae766efd2764",
 #    "FpgaImageGlobalId": "agfi-0ca2bb5282d823cbf"
 #}
+
+
+#{      same nest but with bigger AXI DMA
+#    "FpgaImageId": "afi-07472578d2dc9132b",
+#    "FpgaImageGlobalId": "agfi-010c1abb34c7d5c4d"
+#}
+
+
 aws ec2 describe-fpga-images --fpga-image-ids afi-019d8ae766efd2764

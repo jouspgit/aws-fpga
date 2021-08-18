@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Mon Aug  2 09:02:57 2021
+// Date        : Wed Aug 18 09:59:17 2021
 // Host        : ip-172-31-34-176.eu-west-1.compute.internal running 64-bit CentOS Linux release 7.9.2009 (Core)
 // Command     : write_verilog -force -mode synth_stub
 //               /home/centos/src/aws-fpga/hdk/common/shell_v04261818/design/ip/axi_dma_0/axi_dma_0_stub.v
