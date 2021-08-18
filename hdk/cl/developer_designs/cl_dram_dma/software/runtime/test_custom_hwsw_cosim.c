@@ -21,7 +21,8 @@
 #include <unistd.h>
 #include <malloc.h>
 #include <poll.h>
-#include <time.h>
+
+#include <sys/time.h>
 
 #include <utils/sh_dpi_tasks.h>
 
@@ -37,7 +38,7 @@
 #include "test_dram_dma_common.h"
 
 #define MEM_16G           (1ULL << 34)
-#define N_DDR 1
+#define N_DDR 4
 
 // axi mstr DMA registers : 
 
@@ -56,7 +57,7 @@
 
 
 void usage(const char* program_name);
-int custom_hwsw_cosim(int slot_id);
+int custom_hwsw_cosim(int slot_id, size_t buffer_size);
 int dma_example_hwsw_cosim(int slot_id, size_t buffer_size);
 int dma_readback(int slot_id, size_t buffer_size);
 
@@ -95,8 +96,10 @@ int main(int argc, char **argv)
 #if defined(SV_TEST)
     buffer_size = 256; // bytes
 #else
-    buffer_size = 1ULL << 24; // buffer of 16M bytes
-    //buffer_size = 1ULL << 8; // buffer of 256 bytes
+    //buffer_size = 1ULL << 24; // buffer of 16M bytes
+    //buffer_size = 1ULL << 9; // buffer of 512 bytes
+    //buffer_size = 1ULL << 14; // buffer of 16kiB
+    buffer_size = 1ULL << 13; // buffer of 8kiB
 #endif
     /* The statements within SCOPE ifdef below are needed for HW/SW
      * co-simulation with VCS */
@@ -132,31 +135,27 @@ int main(int argc, char **argv)
     fail_on(rc, out, "Unable to initialize the fpga_mgmt library");
 
 #endif
-    clock_t begin = clock();
+
+    struct timeval tvalBefore, tvalAfter;
+    gettimeofday(&tvalBefore, NULL);
+
     rc = dma_example_hwsw_cosim(slot_id, buffer_size);
-    fail_on(rc, out, "DMA example failed"); // write in DDR + readback quicly
+    fail_on(rc, out, "DMA example failed"); // write in DDR //+ readback quickly
 
-
-    rc = custom_hwsw_cosim(slot_id); //  engage JPEG DMA modification
+    rc = custom_hwsw_cosim(slot_id, buffer_size); //  engage JPEG DMA modification
     fail_on(rc, out, "Custom hw/sw co-simulation failed");
-
-    #if defined(SV_TEST)
-        sv_pause(3); // hors simu? usleep?
-    #else 
-        //usleep(3); // Unneeded for now.
-    #endif
 
     rc = dma_readback(slot_id, buffer_size); //  readback the modified data.
     fail_on(rc, out, "Readback failed");
 
-    #if defined(SV_TEST)
-        sv_pause(3); // hors simu? usleep?
-    #else 
-        //usleep(3);
-    #endif
-    clock_t end = clock();
-    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("Elapsed: %f seconds\n\n", time_spent);
+    gettimeofday (&tvalAfter, NULL);
+
+    long int time_spent = ((tvalAfter.tv_sec - tvalBefore.tv_sec)*1000000L
+           +tvalAfter.tv_usec) - tvalBefore.tv_usec;
+
+    printf("Time in microseconds: %ld microseconds\n",time_spent);
+    long double throughput = (long double) buffer_size*N_DDR / (time_spent);
+    printf("Speed: %Lf MB/s\n\n", throughput);
 
 out:
 
@@ -222,7 +221,7 @@ int dma_example_hwsw_cosim(int slot_id, size_t buffer_size)
     fail_on(rc, out, "unable to initialize buffer");
 
     printf("Values inside the write buffer are : \n\n");
-    //print_buffer(write_buffer, buffer_size);
+    print_buffer(write_buffer, buffer_size);
 
 
     printf("Now performing the DMA transactions...\n");
@@ -230,15 +229,17 @@ int dma_example_hwsw_cosim(int slot_id, size_t buffer_size)
         rc = do_dma_write(write_fd, write_buffer, buffer_size,
             dimm * MEM_16G+0x200000000, dimm, slot_id);
         fail_on(rc, out, "DMA write failed on DIMM: %d", dimm);
+        printf("Address : %llx\n", dimm * MEM_16G+0x200000000);
     }
 
     bool passed = true;
+    /*
     for (dimm = 0; dimm < N_DDR; dimm++) {
         rc = do_dma_read(read_fd, read_buffer, buffer_size,
             dimm * MEM_16G+0x200000000, dimm, slot_id);
         fail_on(rc, out, "DMA read failed on DIMM: %d", dimm);
 
-        printf("Values inside the write buffer readback are : \n\n");
+        //printf("Values inside the write buffer readback are : \n\n");
         //print_buffer(read_buffer, buffer_size);
 
         uint64_t differ = buffer_compare(read_buffer, write_buffer, buffer_size);
@@ -248,7 +249,7 @@ int dma_example_hwsw_cosim(int slot_id, size_t buffer_size)
         } else {
             log_info("DIMM %d passed!", dimm);
         }
-    }
+    }*/
     rc = (passed) ? 0 : 1;
 
 out:
@@ -270,138 +271,150 @@ out:
     return (rc != 0 ? 1 : 0);
 }
 
-int custom_hwsw_cosim(int slot_id)
+int custom_hwsw_cosim(int slot_id, size_t buffer_size)
 {
-  int rc;
+    int rc, dimm;
+    int pf_id = FPGA_APP_PF;
+    uint64_t offset, address;
+    uint32_t value;
 
-  int pf_id = FPGA_APP_PF;
-
-  /* Accessing the Dma configuration registers via AppPF BAR0, which maps to sh_cl_ocl_ AXI-Lite bus between AWS FPGA Shell and the CL*/
-  int bar_id = APP_PF_BAR0; // Connect to OCL port.
-  uint32_t flags =0;// no flags
+    /* Accessing the Dma configuration registers via AppPF BAR0, which maps to sh_cl_ocl_ AXI-Lite bus between AWS FPGA Shell and the CL*/
+    int bar_id = APP_PF_BAR0; // Connect to OCL port.
+    uint32_t flags =0;// no flags
     pci_bar_handle_t handle = PCI_BAR_HANDLE_INIT;
 
-  //Initialize the pci library, actually useless
+    //Initialize the pci library, actually useless
 
-  fpga_pci_init();
+    fpga_pci_init();
 
-  rc = fpga_pci_attach(slot_id, pf_id, bar_id, flags, &handle);
-  fail_on(rc, out, "Unable to attach to the AFI on slot id %d and BAR0", slot_id);
+    rc = fpga_pci_attach(slot_id, pf_id, bar_id, flags, &handle);
+    fail_on(rc, out, "Unable to attach to the AFI on slot id %d and BAR0", slot_id);
 
-  //--------------------------------------------------------------------------
-  // Here starts the code that configures the axi mstr DMA for a transfer.
-
-  printf("\nConfiguring DMA for MM2S DMA operation.\n");
+    //--------------------------------------------------------------------------
+    // Here starts the code that configures the axi mstr DMA for a transfer.
 
 
-  uint64_t offset = MM2S_DMACR;
-  uint32_t value = 0x1; // Set RS bit to 1 (run/stop), no interrupts generation
 
-  rc = fpga_pci_poke(handle, offset, value); //Write a value to a register.
-  fail_on(rc, out, "Unable to write to the fpga (MM2S_DMACR)!");
+    for (dimm = 0; dimm < N_DDR; dimm++) {
 
-  offset = MM2S_SA_MSB; // write upper source address (DDR)
-  value = 0x2;
-  rc = fpga_pci_poke(handle, offset, value);
-  fail_on(rc, out, "Unable to write to the fpga (MM2S_SA_MSB)!");
+    printf("\nConfiguring DMA for MM2S DMA operation.\n");
+        offset = MM2S_DMACR;
+        value = 0x1; // Set RS bit to 1 (run/stop), no interrupts generation
+        rc = fpga_pci_poke(handle, offset, value); //Write a value to a register.
+        fail_on(rc, out, "Unable to write to the fpga (MM2S_DMACR)!");
 
-  offset = MM2S_SA; // write lower source address
-  value = 0x0;
-  rc = fpga_pci_poke(handle, offset, value);
-  fail_on(rc, out, "Unable to write to the fpga (MM2S_SA)!");
+        offset = MM2S_SA_MSB; // write upper source address (DDR, 0x200000000
+        address = dimm * MEM_16G+0x200000000;
+        value = address>>32;
+        rc = fpga_pci_poke(handle, offset, value);
+        fail_on(rc, out, "Unable to write to the fpga (MM2S_SA_MSB)!");
+        printf("Adress : %x\n",value);
 
-  offset = MM2S_LENGTH; // set transfer length to 256 bytes (0x100)
-  value = 0x100;
-  rc = fpga_pci_poke(handle, offset, value);
-  fail_on(rc, out, "Unable to write to the fpga (MM2S_LENGTH)!");
+        offset = MM2S_SA; // write lower source address
+        value = 0x0;
+        rc = fpga_pci_poke(handle, offset, value);
+        fail_on(rc, out, "Unable to write to the fpga (MM2S_SA)!");
 
-  //usleep(1000000);
-
-
-  printf("Configuring DMA for S2MM DMA operation.\n");
-
-  offset = S2MM_DMACR;
-  value = 0x1;  // Set RS bit to 1 (run/stop), no interrupts generation
-  rc = fpga_pci_poke(handle, offset, value);
-  fail_on(rc, out, "Unable to write to the fpga (S2MM_DMACR)!");
-
-  offset = S2MM_DA_MSB; // write upper destination address (DDR1, 0x200000000)
-  value = 0x0;
-  rc = fpga_pci_poke(handle, offset, value);
-  fail_on(rc, out, "Unable to write to the fpga (S2MM_DA_MSB)!");
-
-  offset = S2MM_DA; // write lower destination address (DDR)
-  value = 0x0;
-  rc = fpga_pci_poke(handle, offset, value);
-  fail_on(rc, out, "Unable to write to the fpga (S2MM_DA)!");
-
-  offset = S2MM_LENGTH; // set transfer length to 256 bytes (0x100)
-  value = 0x100;
-  rc = fpga_pci_poke(handle, offset, value);
-  fail_on(rc, out, "Unable to write to the fpga (S2MM_LENGTH)!");
-
-  //usleep(1000000);
-  //delay ? or waiting in a loop?
+        offset = MM2S_LENGTH; // set transfer length
+        value = (uint32_t) buffer_size ;
+        rc = fpga_pci_poke(handle, offset, value);
+        fail_on(rc, out, "Unable to write to the fpga (MM2S_LENGTH)!");
 
 
-  //---------------------Wait and Check (unused for now)----------------------
-  /*
-  // Wait for the busy status to be cleared
+    //}
 
-  //int timeout;
-  //uint32_t find_ok = 0;
-  //uint32_t find_ko = 0;
-  //uint32_t busy = 0;
-  busy = 1;
-  while(busy == 1) {
-  if(timeout == 10) {
+
+    printf("Configuring DMA for S2MM DMA operation.\n");
+
+    //for (dimm = 0; dimm < N_DDR; dimm++) {
+
+        offset = S2MM_DMACR;
+        value = 0x1;  // Set RS bit to 1 (run/stop), no interrupts generation
+        rc = fpga_pci_poke(handle, offset, value);
+        fail_on(rc, out, "Unable to write to the fpga (S2MM_DMACR)!");
+
+        offset = S2MM_DA_MSB; // write upper destination address (DDR)
+        address = dimm * MEM_16G + 0x0;
+        value = address>>32;
+        rc = fpga_pci_poke(handle, offset, value);
+        fail_on(rc, out, "Unable to write to the fpga (S2MM_DA_MSB)!");
+        printf("Adress : %x\n",value);
+
+        offset = S2MM_DA; // write lower destination address (DDR)
+        value = 0x0;
+        rc = fpga_pci_poke(handle, offset, value);
+        fail_on(rc, out, "Unable to write to the fpga (S2MM_DA)!");
+
+        offset = S2MM_LENGTH; // set transfer length
+        value = (uint32_t) buffer_size ;
+        rc = fpga_pci_poke(handle, offset, value);
+        fail_on(rc, out, "Unable to write to the fpga (S2MM_LENGTH)!");
+        //usleep(100000);
+    }
+
+
+    //usleep(1000000);
+    //delay ? or waiting in a loop?
+
+
+    //---------------------Wait and Check (unused for now)----------------------
+    /*
+    // Wait for the busy status to be cleared
+
+    //int timeout;
+    //uint32_t find_ok = 0;
+    //uint32_t find_ko = 0;
+    //uint32_t busy = 0;
+    busy = 1;
+    while(busy == 1) {
+    if(timeout == 10) {
     printf("Timeout - Something went wrong with the HW. Please do\n");
     printf("\t\tsudo fpga-clear-local-image -S %d\n", slot_id);
     printf("And reload your AFI\n");
     printf("\t\tsudo fpga-load-local-image -S %d -I agfi-xxxxxxxxxxxxxxxxx\n", slot_id);
     return 1;
-  }
-  if (timeout) {
+    }
+    if (timeout) {
     printf("Please wait, it may take time ...\n");
-  }
-  // Wait for the HW to process
-  usleep(1000000);
-  timeout++;
+    }
+    // Wait for the HW to process
+    usleep(1000000);
+    timeout++;
 
-  // Read
-  rc = fpga_pci_peek(pci_bar_handle, URAM_REG_ADDR, &value);
-  fail_on(rc, out, "Unable to read read from the fpga !");
-  find_ok = value >> 31;
-  find_ko = (value >> 30) & 0x00000001;
-  busy = (value >> 29) & 0x00000001;
-  value = value & 0x1fffffff;
-  printf("Read 0x%08x find_ok=%d find_ko=%d, busy=%d\n", value, find_ok, find_ko, busy);
-}
+    // Read
+    rc = fpga_pci_peek(pci_bar_handle, URAM_REG_ADDR, &value);
+    fail_on(rc, out, "Unable to read read from the fpga !");
+    find_ok = value >> 31;
+    find_ko = (value >> 30) & 0x00000001;
+    busy = (value >> 29) & 0x00000001;
+    value = value & 0x1fffffff;
+    printf("Read 0x%08x find_ok=%d find_ko=%d, busy=%d\n", value, find_ok, find_ko, busy);
+    }
 
-if(find_ok == 1) {
-  if(del_info == 1) {
+    if(find_ok == 1) {
+    if(del_info == 1) {
     printf("Deletion OK : The value 0x%08x has been deleted successfully\n", value);
-  } else {
+    } else {
     printf("Find OK : The value 0x%08x is present in the URAM\n", value);
-  }
-} else {
-  if(find_ko == 1) {
+    }
+    } else {
+    if(find_ko == 1) {
     printf("Find KO : The value 0x%08x is NOT present in the URAM\n", value);
-  } else {
+    } else {
     printf("The value 0x%08x has been added to the URAM successfully\n", value);
-  }
-}*/
+    }
+    }*/
 
-  out:
-  if (handle>=0)
-  {
+    out:
+    if (handle>=0)
+    {
       rc = fpga_pci_detach(handle); //  Detach from an FPGA memory space.
       if (rc) {
       printf("Failure while detaching from the fpga.\n");
       }
-  }
-  return (rc != 0 ? 1 : 0);
-  // functions past line 184 seem to maybe be useful but hard to say
+    }
+    return (rc != 0 ? 1 : 0);
+    // functions past line 184 seem to maybe be useful but hard to say
 }
 
 
@@ -428,16 +441,17 @@ int dma_readback(int slot_id, size_t buffer_size)
     
     printf("Now performing the DMA readbacks...\n");
 
-    bool passed = true;
+
     for (dimm = 0; dimm < N_DDR; dimm++) {
         rc = do_dma_read(read_fd, read_buffer, buffer_size,
             dimm * MEM_16G, dimm, slot_id); // modified readback adress, works
         fail_on(rc, out, "DMA read failed on DIMM: %d", dimm);
 
         printf("Values inside the data readback buffer are : \n\n");
-        //print_buffer(read_buffer, buffer_size);
+        print_buffer(read_buffer, buffer_size);
 
     }
+    bool passed = true;
     rc = (passed) ? 0 : 1;
 
 out:

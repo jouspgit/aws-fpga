@@ -23,6 +23,8 @@
 #include <unistd.h>
 #include <poll.h>
 
+#include <sys/time.h>
+
 #include "fpga_pci.h"
 #include "fpga_mgmt.h"
 #include "fpga_dma.h"
@@ -47,7 +49,7 @@ int axi_mstr_ddr_access(int slot_id, pci_bar_handle_t pci_bar_handle, uint32_t d
 int main(int argc, char **argv) {
     int rc;
     int slot_id = 0;
-    int interrupt_n;
+    //int interrupt_n;
 
     switch (argc) {
     case 1:
@@ -76,20 +78,32 @@ int main(int argc, char **argv) {
     rc = check_slot_config(slot_id);
     fail_on(rc, out, "slot config is not correct");
 #endif
+    struct timeval tvalBefore, tvalAfter;
+    gettimeofday(&tvalBefore, NULL);
 
     /* run the dma test example */
-    rc = dma_example(slot_id, 1ULL << 24);
+    rc = dma_example(slot_id, 1ULL << 25);
     fail_on(rc, out, "DMA example failed");
 
+    gettimeofday (&tvalAfter, NULL);
+
+    long int time_spent = ((tvalAfter.tv_sec - tvalBefore.tv_sec)*1000000L
+           +tvalAfter.tv_usec) - tvalBefore.tv_usec;
+
+    printf("Time in microseconds: %ld microseconds\n",time_spent);
+    long double throughput = (long double) 33554432 / (time_spent/4);
+    printf("Speed: %Lf MB/s\n\n", throughput);
+
+
     /* run interrupt examples */
-    for (interrupt_n = 0; interrupt_n < USER_INTERRUPTS_MAX; interrupt_n++) {
-        rc = interrupt_example(slot_id, interrupt_n);
-        fail_on(rc, out, "Interrupt example failed");
-    }
+    //for (interrupt_n = 0; interrupt_n < USER_INTERRUPTS_MAX; interrupt_n++) {
+    //    rc = interrupt_example(slot_id, interrupt_n);
+    //    fail_on(rc, out, "Interrupt example failed");
+    //}
 
     /* run axi master example */
-    rc = axi_mstr_example(slot_id);
-    fail_on(rc, out, "AXI Master example failed");
+    //rc = axi_mstr_example(slot_id);
+    //fail_on(rc, out, "AXI Master example failed");
 
 out:
     log_info("TEST %s", (rc == 0) ? "PASSED" : "FAILED");
