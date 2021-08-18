@@ -21,6 +21,7 @@
 #include <unistd.h>
 #include <malloc.h>
 #include <poll.h>
+#include <time.h>
 
 #include <utils/sh_dpi_tasks.h>
 
@@ -94,8 +95,8 @@ int main(int argc, char **argv)
 #if defined(SV_TEST)
     buffer_size = 256; // bytes
 #else
-    //buffer_size = 1ULL << 24; // buffer of 16M bytes
-    buffer_size = 1ULL << 8; // buffer of 256 bytes
+    buffer_size = 1ULL << 24; // buffer of 16M bytes
+    //buffer_size = 1ULL << 8; // buffer of 256 bytes
 #endif
     /* The statements within SCOPE ifdef below are needed for HW/SW
      * co-simulation with VCS */
@@ -131,7 +132,7 @@ int main(int argc, char **argv)
     fail_on(rc, out, "Unable to initialize the fpga_mgmt library");
 
 #endif
-
+    clock_t begin = clock();
     rc = dma_example_hwsw_cosim(slot_id, buffer_size);
     fail_on(rc, out, "DMA example failed"); // write in DDR + readback quicly
 
@@ -153,7 +154,9 @@ int main(int argc, char **argv)
     #else 
         //usleep(3);
     #endif
-
+    clock_t end = clock();
+    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    printf("Elapsed: %f seconds\n\n", time_spent);
 
 out:
 
@@ -219,7 +222,7 @@ int dma_example_hwsw_cosim(int slot_id, size_t buffer_size)
     fail_on(rc, out, "unable to initialize buffer");
 
     printf("Values inside the write buffer are : \n\n");
-    print_buffer(write_buffer, buffer_size);
+    //print_buffer(write_buffer, buffer_size);
 
 
     printf("Now performing the DMA transactions...\n");
@@ -236,7 +239,7 @@ int dma_example_hwsw_cosim(int slot_id, size_t buffer_size)
         fail_on(rc, out, "DMA read failed on DIMM: %d", dimm);
 
         printf("Values inside the write buffer readback are : \n\n");
-        print_buffer(read_buffer, buffer_size);
+        //print_buffer(read_buffer, buffer_size);
 
         uint64_t differ = buffer_compare(read_buffer, write_buffer, buffer_size);
         if (differ != 0) {
@@ -432,7 +435,7 @@ int dma_readback(int slot_id, size_t buffer_size)
         fail_on(rc, out, "DMA read failed on DIMM: %d", dimm);
 
         printf("Values inside the data readback buffer are : \n\n");
-        print_buffer(read_buffer, buffer_size);
+        //print_buffer(read_buffer, buffer_size);
 
     }
     rc = (passed) ? 0 : 1;
